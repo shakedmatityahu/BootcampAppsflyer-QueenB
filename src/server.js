@@ -4,7 +4,7 @@ const path = require("path");
 const app = express();
 const port = process.env.PORT || 5001;
 
-const mentorsRouter = require("./api/routes");
+const Router = require("./api/routes");
 
 /*
 CORS (Cross-Origin Resource Sharing) is a browser security feature that restricts
@@ -17,7 +17,7 @@ app.use(express.json());
 // enables the server to serve the client app without running it
 app.use(express.static(path.join(__dirname, "../client/build")));
 
-app.use("/api", mentorsRouter);
+app.use("/api", Router);
 
 app.get("/api/helloworld", (req, res) => {
   res.send("Hello! World");
