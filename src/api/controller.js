@@ -1,7 +1,7 @@
 const pool = require("./db");
 const queires = require("./queries");
 
-// get all mentors - Route ( /api/mentors)
+// GET all mentors - Route ( /api/mentors)
 const getMentors = (req, res) => {
   pool.query(queires.getMentors, (error, results) => {
     if (error) {
@@ -13,7 +13,7 @@ const getMentors = (req, res) => {
 
 //////// (below are optional) ////////
 
-// check if already email exists 
+// check if already email exists
 const checkEmail = async (eamil) => {
   try {
     const result = await pool.query(queires.checkEmail, [email]);
@@ -23,7 +23,7 @@ const checkEmail = async (eamil) => {
   }
 };
 
-// create new account- Route ( /api/mentors)
+// ADD new account- Route ( /api/mentors)
 const addMentor = async (req, res) => {
   const {
     email,
@@ -55,7 +55,7 @@ const addMentor = async (req, res) => {
   }
 };
 
-// delete account - Route ( /api/mentors/:email)
+// DELETE account - Route ( /api/mentors/:email)
 const deleteMentor = async (req, res) => {
   const email = req.params.email;
   try {
@@ -71,7 +71,7 @@ const deleteMentor = async (req, res) => {
   }
 };
 
-// update mentor details- Route (/api/mentors/:email)
+// PUT mentor details- Route (/api/mentors/:email)
 const updateMentor = async (req, res) => {
   const {
     email,
