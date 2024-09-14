@@ -6,12 +6,12 @@ import MentorCard from "../components/MentorCard";
 import MentorsDetails from "../components/MentorsDetails";
 
 const Home = () => {
-    return (
-      <div className="container"> 
-        <h1>Mentors</h1>
-        <MentorsDetails />
-      </div>
-    );
-  };
+  return (
+    <div className="container">
+      <h1>Mentors</h1>
+      <MentorsDetails />
+    </div>
+  );
+};
 
 export default Home;

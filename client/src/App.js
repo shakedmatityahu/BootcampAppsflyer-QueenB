@@ -1,21 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import firstPerson from './images/person1.svg';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import firstPerson from "./images/person1.svg";
 
 // components
-import Home from './pages/Home'
-import MentorsDetails from './components/MentorsDetails';
+import Home from "./pages/Home";
+import MentorsDetails from "./components/MentorsDetails";
 
 const port = process.env.PORT || 5001;
 
 function App() {
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
-    axios.get(`http://localhost:${port}/api`)
-      .then(response => setMessage(response.data))
-      .catch(error => console.error(`There was an error retrieving the message: ${error}`))
-  }, [])
+    axios
+      .get(`http://localhost:${port}/api`)
+      .then((response) => setMessage(response.data))
+      .catch((error) =>
+        console.error(`There was an error retrieving the message: ${error}`)
+      );
+  }, []);
 
   return (
     <>
@@ -26,8 +29,7 @@ function App() {
       </div>
       {/* ************************** */}
 
-      
-      <Home/>
+      <Home />
     </>
   );
 }

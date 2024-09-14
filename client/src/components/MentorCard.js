@@ -14,12 +14,12 @@ const images = {
   person4,
   person5,
   person6,
-  person7
+  person7,
 };
 
 const MentorCard = ({ mentor }) => {
-    // TODO - change the image to be dynamic
-    // const image = images[`person${(parseInt(mentor.email % 7)) + 1}`];
+  // TODO - change the image to be dynamic
+  // const image = images[`person${(parseInt(mentor.email % 7)) + 1}`];
   return (
     <div className="card" style={{ width: "18rem" }}>
       {/* Make sure the path to the image is correct */}
@@ -47,5 +47,3 @@ const MentorCard = ({ mentor }) => {
 };
 
 export default MentorCard;
-
-
