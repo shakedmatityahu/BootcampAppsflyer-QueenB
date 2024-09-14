@@ -11,6 +11,12 @@ router.post('/mentors', controller.addMentor);
 
 //////// (below are optional) ////////
 
+// delete mentor route
+router.delete('/mentors/:email', controller.deleteMentor);
+
+// update mentor route
+router.put('/mentors/:email', controller.updateMentor);
+
 // signup route (optional) 
 
 

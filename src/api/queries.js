@@ -32,6 +32,10 @@ const addMentorLangs = "INSERT INTO languages (email, programming_language) VALU
 // delete account
 const deleteMentor = "DELETE FROM mentors WHERE email = $1";
 
+// update mentor details
+const updateMentor = "UPDATE mentoers SET first_name = $1, last_name = $2, phone_number = $3, linkedin = $4 WHERE email = $5;";
 
 
-module.exports = { getMentors, checkEmail, createMentor, deleteMentor, addMentorLangs };
+
+
+module.exports = { getMentors, checkEmail, createMentor, deleteMentor, addMentorLangs, updateMentor };
