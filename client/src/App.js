@@ -4,6 +4,7 @@ import firstPerson from './images/person1.svg';
 
 // components
 import Home from './pages/Home'
+import MentorsDetails from './components/MentorsDetails';
 
 const port = process.env.PORT || 5001;
 
@@ -11,7 +12,7 @@ function App() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    axios.get(`http://localhost:${port}/api/helloworld`)
+    axios.get(`http://localhost:${port}/api`)
       .then(response => setMessage(response.data))
       .catch(error => console.error(`There was an error retrieving the message: ${error}`))
   }, [])
@@ -20,8 +21,8 @@ function App() {
     <>
       {/* we can delete this section */}
       <div className="App">
-        <h1>{message}</h1>
-        <img src={firstPerson} alt="person1" />
+        {Home}
+        {/* <img src={firstPerson} alt="person1" /> */}
       </div>
       {/* ************************** */}
 
