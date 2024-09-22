@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const pool = require("./db");
 const queries = require("./queries");
 const SALT_ROUNDS = 10;
+const ALLWOED_LANGUAGES = ["Java", "Python", "JavaScript", "C++", "GO"];
 
 // GET all users
 const getAllUsers = (req, res) => {
@@ -47,9 +48,23 @@ const signup = async (req, res) => {
   } = req.body;
 
   try {
-    // check validation
+    // Validation of the fields EMAIL, PASSWORD, PROGRAMMING LANGUAGE
     if (email.trim() == "" || userType.trim() == "" || password.trim() == "") {
       res.status(400).send({ error: "All field are required" });
+      return;
+    }
+    if (!validateEmail(email)) {
+      res.status(400).send({ error: "Invalid email" });
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      res.status(400).send({ error: "Password must be at least 6 characters" });
+      return;
+    }
+
+    if (!validateProgrammingLanguage(programming_language)) {
+      res.status(400).send({ error: "Invalid programming language" });
       return;
     }
 
@@ -59,8 +74,7 @@ const signup = async (req, res) => {
         first_name.trim() == "" ||
         last_name.trim() == "" ||
         phone_number.trim() == "" ||
-        linkedin.trim() == "" ||
-        programming_language.trim() == ""
+        linkedin.trim() == ""
       ) {
         res.status(400).send({ error: "All field are required" });
         return;
@@ -189,32 +203,49 @@ const getMentorDetailsByEmail = async (req, res) => {
 
   try {
     const user = await pool.query(queries.getMentorDetailsByEmail, [email]);
-    if(user.rows.length === 0) {
+    if (user.rows.length === 0) {
       res.status(400).send({ error: "Error fetching mentor details" });
       return;
     }
-    res.status(200).send(user.rows[0]);    
+    res.status(200).send(user.rows[0]);
   } catch (error) {
     throw error;
   }
-}
+};
 
 // Delete mentee account
 const deleteMentee = async (req, res) => {
-    const email = req.params.email;
-    try {
-        const emailChecked = pool.query(queries.checkEmail, [email]);
-        if (!(await emailChecked).rows.length) {
-        res.status(400).send({ error: "Email does not exist" });
-        return;
-        } else {
-        await pool.query(queries.deleteMentorsFromUsers, [email]);
-        res.status(200).send({ success: "Account deleted successfully" });
-        }
-    } catch (error) {
-        throw error;
+  const email = req.params.email;
+  try {
+    const emailChecked = pool.query(queries.checkEmail, [email]);
+    if (!(await emailChecked).rows.length) {
+      res.status(400).send({ error: "Email does not exist" });
+      return;
+    } else {
+      await pool.query(queries.deleteMentorsFromUsers, [email]);
+      res.status(200).send({ success: "Account deleted successfully" });
     }
-}
+  } catch (error) {
+    throw error;
+  }
+};
+
+// validate email
+const validateEmail = (email) => {
+  const re = /\S+@\S+\.\S+/;
+  return re.test(email);
+};
+
+//validate password
+const validatePassword = (password) => {
+  return password.length >= 6;
+};
+
+const validateProgrammingLanguage = (programming_language) => {
+  console.log(programming_language);
+
+  return ALLWOED_LANGUAGES.includes(programming_language);
+};
 
 module.exports = {
   getMentors,
@@ -224,5 +255,5 @@ module.exports = {
   getAllUsers,
   login,
   getMentorDetailsByEmail,
-    deleteMentee,
+  deleteMentee,
 };
