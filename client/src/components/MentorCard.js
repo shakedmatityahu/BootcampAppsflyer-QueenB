@@ -6,6 +6,7 @@ import person4 from "../images/person4.svg";
 import person5 from "../images/person5.svg";
 import person6 from "../images/person6.svg";
 import person7 from "../images/person7.svg";
+import './MentorCard.css'; // Import custom styles for the grid
 
 const images = {
   person1,
@@ -21,9 +22,9 @@ const MentorCard = ({ mentor }) => {
   // TODO - change the image to be dynamic
   // const image = images[`person${(parseInt(mentor.email % 7)) + 1}`];
   return (
-    <div className="card" style={{ width: "18rem" }}>
+    <div className="mentor-card" style={{ width: "18rem" }}>
       {/* Make sure the path to the image is correct */}
-      <img src={person5} alt="" />
+      <img src={person5} alt="" className="imag" />
       <div className="card-body">
         <h5 className="card-title">
           <h3>
