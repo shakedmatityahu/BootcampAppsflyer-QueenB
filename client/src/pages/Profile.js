@@ -3,10 +3,11 @@ import { useLogout } from '../hooks/useLogout';
 import { Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { userType } from "./Signup";
 import './Auth.css'; // Assuming you are using the same auth styles for consistency
 
 const Profile = () => {
-  const { user, userType } = useAuthContext(); // Assuming userType is returned by useAuthContext
+  const { user } = useAuthContext(); // Assuming userType is returned by useAuthContext
   const { logout } = useLogout();
   const navigate = useNavigate();
 
@@ -158,7 +159,7 @@ const Profile = () => {
         )}
 
 
-{userType === 'mentor' && mentorDetails && (
+{user.userType == 'mentor' && (
   <button type="button" onClick={handleUpdateBtn} className="auth-button">
     Update Details
   </button>
