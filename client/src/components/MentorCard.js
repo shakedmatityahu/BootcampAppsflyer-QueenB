@@ -32,8 +32,14 @@ const MentorCard = ({ mentor }) => {
           </h3>
         </h5>
         <p className="card-text">
-          <p>{mentor.email}</p>
-          {/* <p>{mentor.phone_number}</p> */}
+          <a className="link-opacity-10-hover" href={`mailto:${mentor.email}`} target="_blank">
+            <svg width="22px" height="25px" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.0098 12.39V7.39001C22.0098 6.32915 21.5883 5.31167 20.8382 4.56152C20.0881 3.81138 19.0706 3.39001 18.0098 3.39001H6.00977C4.9489 3.39001 3.93148 3.81138 3.18134 4.56152C2.43119 5.31167 2.00977 6.32915 2.00977 7.39001V17.39C2.00977 18.4509 2.43119 19.4682 3.18134 20.2184C3.93148 20.9685 4.9489 21.39 6.00977 21.39H12.0098" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M21.209 5.41992C15.599 16.0599 8.39906 16.0499 2.78906 5.41992" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15.0098 18.39H23.0098" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M20.0098 15.39L23.0098 18.39L20.0098 21.39" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>   
+          </a>
           <a className="link-opacity-10-hover" href={`http://wa.me/+972${mentor.phone_number}`}>
             <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M6.014 8.00613C6.12827 7.1024 7.30277 5.87414 8.23488 6.01043L8.23339 6.00894C9.14051 6.18132 9.85859 7.74261 10.2635 8.44465C10.5504 8.95402 10.3641 9.4701 10.0965 9.68787C9.7355 9.97883 9.17099 10.3803 9.28943 10.7834C9.5 11.5 12 14 13.2296 14.7107C13.695 14.9797 14.0325 14.2702 14.3207 13.9067C14.5301 13.6271 15.0466 13.46 15.5548 13.736C16.3138 14.178 17.0288 14.6917 17.69 15.27C18.0202 15.546 18.0977 15.9539 17.8689 16.385C17.4659 17.1443 16.3003 18.1456 15.4542 17.9421C13.9764 17.5868 8 15.27 6.08033 8.55801C5.97237 8.24048 5.99955 8.12044 6.014 8.00613Z" fill="#0F0F0F" />
@@ -47,9 +53,9 @@ const MentorCard = ({ mentor }) => {
           </a>
         </p>
         <p>{mentor.programming_languages.split(', ').join(', ')}</p>
-      <p/>
-      {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
-    </div>
+        <p />
+        {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
+      </div>
     </div >
   );
 };
