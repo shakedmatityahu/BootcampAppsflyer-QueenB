@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useLogout } from '../hooks/useLogout';
-import { Modal } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
-import { useAuthContext } from '../hooks/useAuthContext';
-import './Auth.css'; // Assuming you are using the same auth styles for consistency
+import React, { useState, useEffect } from "react";
+import { useLogout } from "../hooks/useLogout";
+import { Modal } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../hooks/useAuthContext";
+import "./Auth.css"; // Assuming you are using the same auth styles for consistency
 
 const Profile = () => {
   const { user, userType } = useAuthContext(); // Assuming userType is returned by useAuthContext
@@ -21,7 +21,7 @@ const Profile = () => {
   const handleCloseDeleteApproveMsg = () => {
     if (approveDeleteSuccess) {
       logout();
-      navigate('/');
+      navigate("/");
     }
     setShowDeleteApproveMsg(false);
   };
@@ -36,8 +36,8 @@ const Profile = () => {
       const response = await fetch(
         `http://localhost:5001/api/getMentorDetailsByEmail/${user.email}`,
         {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
         }
       );
 
@@ -65,19 +65,22 @@ const Profile = () => {
     setSuccess(null);
 
     const emptyFields = Object.entries(mentorDetails).filter(
-      ([key, value]) => !value || value.trim() === ''
+      ([key, value]) => !value || value.trim() === ""
     );
 
     if (emptyFields.length > 0) {
-      setError('All fields must be filled');
+      setError("All fields must be filled");
       return;
     }
 
-    const response = await fetch('http://localhost:5001/api/updateMentorsDetails', {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(mentorDetails),
-    });
+    const response = await fetch(
+      "http://localhost:5001/api/updateMentorsDetails",
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(mentorDetails),
+      }
+    );
 
     const json = await response.json();
 
@@ -92,16 +95,17 @@ const Profile = () => {
   };
 
   const handleDeleteBtn = async () => {
+    console.log("delete");
+    console.log(user.userType);
     setApproveDeleteError(null);
     setApproveDeleteSuccess(null);
-
-    const response = await fetch(
-      `http://localhost:5001/api/deleteMentors/${user.email}`,
-      {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-      }
-    );
+    const url = `http://localhost:5001/api/${
+      user.userType === "mentor" ? "deleteMentors" : "deleteMentees"
+    }/${user.email}`;
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
 
     const json = await response.json();
 
@@ -119,7 +123,9 @@ const Profile = () => {
     <section className="mentor-home">
       <div className="auth-container">
         <h2>Mentor Home</h2>
-        <a href="/" onClick={handleLogoutBtn} className="logout-link">Log Out</a>
+        <a href="/" onClick={handleLogoutBtn} className="logout-link">
+          Log Out
+        </a>
 
         {mentorDetails && (
           <>
@@ -157,14 +163,15 @@ const Profile = () => {
           </>
         )}
 
-
-{userType === 'mentor' && mentorDetails && (
-  <button type="button" onClick={handleUpdateBtn} className="auth-button">
-    Update Details
-  </button>
-)}
-
-        
+        {userType === "mentor" && mentorDetails && (
+          <button
+            type="button"
+            onClick={handleUpdateBtn}
+            className="auth-button"
+          >
+            Update Details
+          </button>
+        )}
 
         <button onClick={handleDeleteBtn} className="auth-button delete">
           Delete Account
@@ -173,13 +180,21 @@ const Profile = () => {
         {error && <p className="error-message">{error}</p>}
         {success && <p className="success-message">{success}</p>}
 
-        <Modal show={showDeleteApproveMsg} onHide={handleCloseDeleteApproveMsg} animation={false} centered>
+        <Modal
+          show={showDeleteApproveMsg}
+          onHide={handleCloseDeleteApproveMsg}
+          animation={false}
+          centered
+        >
           <Modal.Body>
             {approveDeleteError && <p>{approveDeleteError}</p>}
             {approveDeleteSuccess && <p>{approveDeleteSuccess}</p>}
           </Modal.Body>
           <Modal.Footer>
-            <button onClick={handleCloseDeleteApproveMsg} className="modal-close-btn">
+            <button
+              onClick={handleCloseDeleteApproveMsg}
+              className="modal-close-btn"
+            >
               Close
             </button>
           </Modal.Footer>
