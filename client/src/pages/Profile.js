@@ -124,11 +124,9 @@ const Profile = () => {
     <section className="mentor-home">
       <div className="auth-container">
 
-        <h2>Mentor Home</h2>
         <a href="/" onClick={handleLogoutBtn} className="logout-link">
           Log Out
         </a>
-
         {mentorDetails && (
           <>
             <label>First Name</label>
