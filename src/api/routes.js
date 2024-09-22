@@ -26,4 +26,7 @@ router.post("/login", controller.login);
 
 router.get("/getMentorDetailsByEmail/:email", controller.getMentorDetailsByEmail)
 
+// delete mentee route
+router.delete("/deleteMentees/:email", controller.deleteMentee);
+
 module.exports = router;
