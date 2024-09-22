@@ -199,6 +199,23 @@ const getMentorDetailsByEmail = async (req, res) => {
   }
 }
 
+// Delete mentee account
+const deleteMentee = async (req, res) => {
+    const email = req.params.email;
+    try {
+        const emailChecked = pool.query(queries.checkEmail, [email]);
+        if (!(await emailChecked).rows.length) {
+        res.status(400).send({ error: "Email does not exist" });
+        return;
+        } else {
+        await pool.query(queries.deleteMentorsFromUsers, [email]);
+        res.status(200).send({ success: "Account deleted successfully" });
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
   getMentors,
   signup,
@@ -207,4 +224,5 @@ module.exports = {
   getAllUsers,
   login,
   getMentorDetailsByEmail,
+    deleteMentee,
 };
