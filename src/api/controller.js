@@ -4,6 +4,23 @@ const queries = require("./queries");
 const SALT_ROUNDS = 10;
 const ALLWOED_LANGUAGES = ["Java", "Python", "JavaScript", "C++", "GO"];
 
+// validate email
+const validateEmail = (email) => {
+  const re = /\S+@\S+\.\S+/;
+  return re.test(email);
+};
+
+//validate password
+const validatePassword = (password) => {
+  return password.length >= 6;
+};
+
+const validateProgrammingLanguage = (programming_language) => {
+  console.log(programming_language);
+
+  return programming_language.every(language => ALLWOED_LANGUAGES.includes(language));
+};
+
 // GET all users
 const getAllUsers = (req, res) => {
   pool.query(queries.getAllUsers, (error, results) => {
@@ -63,18 +80,18 @@ const signup = async (req, res) => {
       return;
     }
 
-    if (!validateProgrammingLanguage(programming_language)) {
-      res.status(400).send({ error: "Invalid programming language" });
-      return;
-    }
-
     if (userType == "mentor") {
+      if (!validateProgrammingLanguage(programming_language)) {
+        res.status(400).send({ error: "Invalid programming language" });
+        return;
+      }
       // check validation for mentor
       if (
         first_name.trim() == "" ||
         last_name.trim() == "" ||
         phone_number.trim() == "" ||
-        linkedin.trim() == ""
+        linkedin.trim() == "" ||
+        programming_language.length == 0
       ) {
         res.status(400).send({ error: "All field are required" });
         return;
@@ -100,9 +117,10 @@ const signup = async (req, res) => {
           phone_number,
           linkedin,
         ]);
-        if (programming_language) {
-          pool.query(queries.addMentorLangs, [email, programming_language]);
-        }
+        // if (programming_language) {
+        //   pool.query(queries.addMentorLangs, [email, programming_language]);
+        // }
+        programming_language.every(lang => pool.query(queries.addMentorLangs, [email, lang]))
       }
 
       res.status(200).json({ email, userType });
@@ -230,21 +248,15 @@ const deleteMentee = async (req, res) => {
   }
 };
 
-// validate email
-const validateEmail = (email) => {
-  const re = /\S+@\S+\.\S+/;
-  return re.test(email);
-};
+const searchMentors = async (req, res) => {
+  const { searchWord } = req.params;
 
-//validate password
-const validatePassword = (password) => {
-  return password.length >= 6;
-};
-
-const validateProgrammingLanguage = (programming_language) => {
-  console.log(programming_language);
-
-  return ALLWOED_LANGUAGES.includes(programming_language);
+  try {
+    const result = await pool.query(queries.searchMentors, [searchWord]);
+    res.status(200).json(result.rows);  
+  } catch (error) {
+    throw error;
+  }
 };
 
 module.exports = {
@@ -256,4 +268,5 @@ module.exports = {
   login,
   getMentorDetailsByEmail,
   deleteMentee,
+  searchMentors,
 };

@@ -6,7 +6,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import "./Auth.css"; // Assuming you are using the same auth styles for consistency
 
 const Profile = () => {
-  const { user, userType } = useAuthContext(); // Assuming userType is returned by useAuthContext
+  const { user } = useAuthContext();
   const { logout } = useLogout();
   const navigate = useNavigate();
 
@@ -52,7 +52,7 @@ const Profile = () => {
       }
     };
 
-    if (user) fetchMentorDetails();
+    if (user && user.userType==='mentor') fetchMentorDetails();
   }, [user]);
 
   const handleMentorDetailsInput = (e) => {
@@ -163,7 +163,7 @@ const Profile = () => {
           </>
         )}
 
-        {userType === "mentor" && mentorDetails && (
+        {user.userType === "mentor" && mentorDetails && (
           <button
             type="button"
             onClick={handleUpdateBtn}

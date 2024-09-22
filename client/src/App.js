@@ -2,11 +2,9 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import { useAuthContext } from "./hooks/useAuthContext";
 
 // components
-import Home from "./pages/MentorsBrowse";
 import WelcomePage from "./pages/WelcomePage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import MentorHome from "./pages/Profile";
 import Navbar from "./components/Navbar"; // if Navbar is inside a components folder
 import MentorsBrowse from './pages/MentorsBrowse';
 import Profile from './pages/Profile';
