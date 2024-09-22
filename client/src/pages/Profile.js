@@ -119,7 +119,6 @@ const Profile = () => {
   return (
     <section className="mentor-home">
       <div className="auth-container">
-        <h2>Mentor Home</h2>
         <a href="/" onClick={handleLogoutBtn} className="logout-link">Log Out</a>
 
         {mentorDetails && (
@@ -159,20 +158,25 @@ const Profile = () => {
         )}
 
 
-{user.userType == 'mentor' && (
-  <button type="button" onClick={handleUpdateBtn} className="auth-button">
-    Update Details
-  </button>
-)}
+        {user.userType == 'mentor' && (
+          <button type="button" onClick={handleUpdateBtn} className="auth-button">
+            Update Details
+          </button>
+        )}
 
-        
+
 
         <button onClick={handleDeleteBtn} className="auth-button delete">
           Delete Account
         </button>
 
-        {error && <p className="error-message">{error}</p>}
-        {success && <p className="success-message">{success}</p>}
+        {/* error check for fetching user information (for mentors only) */}
+        {user.userType === 'mentor' && error && (
+          <p className="error-message">{error}</p>
+        )}
+
+        {/* success check for update information (for mentors only) */}
+        {success && <p className="success-message">{success}</p>} 
 
         <Modal show={showDeleteApproveMsg} onHide={handleCloseDeleteApproveMsg} animation={false} centered>
           <Modal.Body>
