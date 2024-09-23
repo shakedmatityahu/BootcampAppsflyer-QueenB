@@ -257,6 +257,21 @@ const searchMentors = async (req, res) => {
   } catch (error) {
     throw error;
   }
+//validate password
+const validatePassword = (password) => {
+  return password.length >= 6;
+};
+
+const validateProgrammingLanguage = (programming_language) => {
+  // Check if it's an array
+  if (!Array.isArray(programming_language)) {
+    return false; // Not an array, invalid input
+  }
+
+  // Check if every language in the array is valid
+  return programming_language.every((lang) =>
+    ALLWOED_LANGUAGES.includes(lang)
+  );
 };
 
 module.exports = {

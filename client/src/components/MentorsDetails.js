@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import MentorCard from "./MentorCard";
 import './MentorsDetails.css'; // Import custom styles for the grid
 
-const MentorsDetails = () => {
+const MentorsDetails = ({ searchTerm }) => {
   const [mentors, setMentors] = useState([]);
   const [filterMentors, setFilterMentors] = useState([]);
   const [searchWord, setSearchWord] = useState("");
@@ -40,6 +40,20 @@ const MentorsDetails = () => {
       }
     }
 };
+  // Filter mentors based on the search term
+//   const filteredMentors = mentors.filter(mentor => {
+//     const fullName = `${mentor.first_name} ${mentor.last_name}`.toLowerCase();
+//     const email = mentor.email.toLowerCase();
+//     const phone = mentor.phone_number;
+//     const programmingLanguages = mentor.programming_languages.toLowerCase();
+
+//     return (
+//       fullName.includes(searchTerm.toLowerCase()) ||
+//       email.includes(searchTerm.toLowerCase()) ||
+//       phone.includes(searchTerm) ||
+//       programmingLanguages.includes(searchTerm.toLowerCase())
+//     );
+//   });
 
   return (
     <div className="mentors-container">
@@ -67,6 +81,13 @@ const MentorsDetails = () => {
         { filterMentors.map((mentor) => (
           <MentorCard key={mentor.email} mentor={mentor} />
         ))}
+//         {filteredMentors.length > 0 ? (
+//           filteredMentors.map((mentor) => (
+//             <MentorCard key={mentor.email} mentor={mentor} />
+//           ))
+//         ) : (
+//           <p>No mentors found matching your search.</p>
+//         )}
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; // Import Navigate
 import { useAuthContext } from "./hooks/useAuthContext";
 
@@ -9,14 +10,16 @@ import Navbar from "./components/Navbar"; // if Navbar is inside a components fo
 import MentorsBrowse from './pages/MentorsBrowse';
 import Profile from './pages/Profile';
 
-function App() {
+const App = () => {
   const { user } = useAuthContext();
-console.log('user', user)
+  const [searchTerm, setSearchTerm] = useState("");
+  console.log('user', user)
+
   return (
     <Router>
       <div>
         {/* Navbar appears on all pages */}
-        <Navbar />
+        <Navbar setSearchTerm={setSearchTerm} />
         <div style={{ paddingTop: '60px' }}>
 
           {/* Wrap routes in Routes */}
