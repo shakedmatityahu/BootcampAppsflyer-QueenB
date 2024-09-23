@@ -10,7 +10,7 @@ const MentorsBrowse = () => {
       <input
         type="text"
         placeholder="Search for mentors..."
-        onChange={(e) => setSearchTerm(e.target.value)} // Update search term on input change
+        onChange={(e) => setSearchTerm(e.target.value)}
       />
       <MentorsDetails searchTerm={searchTerm} />
     </section>

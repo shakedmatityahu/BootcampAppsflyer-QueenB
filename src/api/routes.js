@@ -29,4 +29,7 @@ router.get("/getMentorDetailsByEmail/:email", controller.getMentorDetailsByEmail
 // delete mentee route
 router.delete("/deleteMentees/:email", controller.deleteMentee);
 
+// get mentors by search route
+router.get("/searchMentors/:searchTerm", controller.searchMentors)
+
 module.exports = router;
