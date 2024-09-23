@@ -7,7 +7,8 @@ import { AuthContext } from '../context/AuthContext';
 
 const Navbar = () => {
     const { user: currentUser } = useContext(AuthContext);
-    console.log("current: "+currentUser)
+    console.log("current: " + currentUser)
+
     return (
         <nav className="navbar">
             {/* Left side - Home button */}

@@ -74,7 +74,8 @@ const signup = async (req, res) => {
         first_name.trim() == "" ||
         last_name.trim() == "" ||
         phone_number.trim() == "" ||
-        linkedin.trim() == ""
+        linkedin.trim() == "" ||
+        programming_language.length === 0 // Check if array is empty
       ) {
         res.status(400).send({ error: "All field are required" });
         return;
@@ -242,9 +243,15 @@ const validatePassword = (password) => {
 };
 
 const validateProgrammingLanguage = (programming_language) => {
-  console.log(programming_language);
+  // Check if it's an array
+  if (!Array.isArray(programming_language)) {
+    return false; // Not an array, invalid input
+  }
 
-  return ALLWOED_LANGUAGES.includes(programming_language);
+  // Check if every language in the array is valid
+  return programming_language.every((lang) =>
+    ALLWOED_LANGUAGES.includes(lang)
+  );
 };
 
 module.exports = {
