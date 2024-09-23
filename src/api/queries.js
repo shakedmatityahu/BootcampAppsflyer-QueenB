@@ -50,34 +50,6 @@ const login = "SELECT * FROM users WHERE email = $1";
 
 const getMentorDetailsByEmail = "SELECT * FROM mentors WHERE email = $1";
 
-// search mentors by keyword
-const searchMentors = `
-  SELECT 
-    m.email,
-    m.first_name,
-    m.last_name,
-    m.phone_number,
-    m.linkedin,
-    STRING_AGG(l.programming_language, ', ') AS programming_languages
-  FROM
-    mentors m
-  LEFT JOIN
-    languages l
-  ON
-    m.email = l.email
-  WHERE
-    m.first_name = $1
-    OR m.last_name = $1
-    OR EXISTS (
-        SELECT 1 
-        FROM languages l2 
-        WHERE l2.email = m.email 
-        AND l2.programming_language = $1
-    )
-  GROUP BY
-    m.email;
-  `;
-
 module.exports = {
   getAllUsers,
   getMentors,
@@ -90,5 +62,4 @@ module.exports = {
   login,
   getMentorDetailsByEmail,
   deleteMentorsFromUsers,
-  searchMentors,
 };
