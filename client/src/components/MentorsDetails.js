@@ -60,14 +60,10 @@ const MentorsDetails = ({ searchTerm }) => {
   return (
     <div className="mentors-container">
       <div className="card-container">
-        {filteredMentors.length > 0 ? (
-          filteredMentors.map((mentor) => (
-            <MentorCard key={mentor.email} mentor={mentor} image_index={imageIndex++} />
-            
-          ))
-        ) : (
-          <p>No mentors found matching your search.</p>
-        )}
+        {mentors.length === 0 && <div>No mentors found</div>}
+        {mentors.map((mentor) => (
+          <MentorCard key={mentor.email} mentor={mentor} image_index={imageIndex++} />
+        ))}
       </div>
     </div>
   );
