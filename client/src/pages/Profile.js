@@ -28,7 +28,7 @@ const Profile = () => {
   };
 
   const handleShowDeleteApproveMsg = () => setShowDeleteApproveMsg(true);
-  const handleLogoutBtn = () => logout();
+  // const handleLogoutBtn = () => logout();
 
   useEffect(() => {
     setError(null);
@@ -124,9 +124,9 @@ const Profile = () => {
     <section className="mentor-home">
       <div className="auth-container">
 
-        <a href="/" onClick={handleLogoutBtn} className="logout-link">
+        {/* <a href="/" onClick={handleLogoutBtn} className="logout-link">
           Log Out
-        </a>
+        </a> */}
         {mentorDetails && (
           <>
             <label>First Name</label>
