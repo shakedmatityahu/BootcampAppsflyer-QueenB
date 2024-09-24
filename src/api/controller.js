@@ -23,16 +23,6 @@ const getMentors = (req, res) => {
   });
 };
 
-// check if already email exists
-const checkEmail = async (email) => {
-  try {
-    const result = await pool.query(queries.checkEmail, [email]);
-    return result.rows.length;
-  } catch (error) {
-    throw error;
-  }
-};
-
 // ADD new account- Route
 const signup = async (req, res) => {
   const {
@@ -44,6 +34,7 @@ const signup = async (req, res) => {
     phone_number,
     linkedin,
     programming_language,
+    photo,
   } = req.body;
 
   try {
@@ -94,8 +85,11 @@ const signup = async (req, res) => {
           last_name,
           phone_number,
           linkedin,
+          photo,
         ]);
-        programming_language.every(lang => pool.query(queries.addMentorLangs, [email, lang]))
+        programming_language.every((lang) =>
+          pool.query(queries.addMentorLangs, [email, lang])
+        );
       }
 
       res.status(200).json({ email, userType });
@@ -166,6 +160,7 @@ const updateMentor = async (req, res) => {
     phone_number,
     linkedin,
     programming_language,
+    photo,
   } = req.body;
 
   try {
@@ -179,6 +174,7 @@ const updateMentor = async (req, res) => {
         last_name,
         phone_number,
         linkedin,
+        photo,
         email,
       ]);
       if (programming_language) {
@@ -239,7 +235,7 @@ const searchMentors = async (req, res) => {
 
   try {
     const result = await pool.query(queries.searchMentors, [searchWord]);
-    res.status(200).json(result.rows);  
+    res.status(200).json(result.rows);
   } catch (error) {
     throw error;
   }

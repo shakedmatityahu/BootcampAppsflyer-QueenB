@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS mentors (
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
     phone_number VARCHAR(50),
-    linkedin VARCHAR(255)
+    linkedin VARCHAR(255),
+    photo VARCHAR(255) 
 );
 
 -- Create the languages table (connected to mentors by email, representing programming languages)
@@ -56,27 +57,27 @@ INSERT INTO users (email, password, userType) VALUES
 ('ruby.evans@example.com', '$2b$10$1uikHH/2gB66adnCHtbLge2OYyO8ot8KhDgx6qwQogg2RxLMgaFf2', 'mentee');
 
 -- Insert 20 female mentors
-INSERT INTO mentors (email, first_name, last_name, phone_number, linkedin) VALUES
-('sara.smith@example.com', 'Sara', 'Smith', '555-1234', 'https://linkedin.com/in/sara-smith'),
-('emma.johnson@example.com', 'Emma', 'Johnson', '555-5678', 'https://linkedin.com/in/emma-johnson'),
-('olivia.brown@example.com', 'Olivia', 'Brown', '555-9101', 'https://linkedin.com/in/olivia-brown'),
-('ava.jones@example.com', 'Ava', 'Jones', '555-2345', 'https://linkedin.com/in/ava-jones'),
-('isabella.garcia@example.com', 'Isabella', 'Garcia', '555-6789', 'https://linkedin.com/in/isabella-garcia'),
-('mia.martinez@example.com', 'Mia', 'Martinez', '555-1122', 'https://linkedin.com/in/mia-martinez'),
-('amelia.rodriguez@example.com', 'Amelia', 'Rodriguez', '555-3344', 'https://linkedin.com/in/amelia-rodriguez'),
-('harper.hernandez@example.com', 'Harper', 'Hernandez', '555-5566', 'https://linkedin.com/in/harper-hernandez'),
-('evelyn.lopez@example.com', 'Evelyn', 'Lopez', '555-7788', 'https://linkedin.com/in/evelyn-lopez'),
-('abigail.moore@example.com', 'Abigail', 'Moore', '555-9911', 'https://linkedin.com/in/abigail-moore'),
-('sofia.gonzalez@example.com', 'Sofia', 'Gonzalez', '555-2233', 'https://linkedin.com/in/sofia-gonzalez'),
-('avery.hill@example.com', 'Avery', 'Hill', '555-4455', 'https://linkedin.com/in/avery-hill'),
-('ella.scott@example.com', 'Ella', 'Scott', '555-6677', 'https://linkedin.com/in/ella-scott'),
-('lily.green@example.com', 'Lily', 'Green', '555-8899', 'https://linkedin.com/in/lily-green'),
-('chloe.adams@example.com', 'Chloe', 'Adams', '555-1010', 'https://linkedin.com/in/chloe-adams'),
-('nora.baker@example.com', 'Nora', 'Baker', '555-1212', 'https://linkedin.com/in/nora-baker'),
-('scarlett.nelson@example.com', 'Scarlett', 'Nelson', '555-1313', 'https://linkedin.com/in/scarlett-nelson'),
-('aria.carter@example.com', 'Aria', 'Carter', '555-1414', 'https://linkedin.com/in/aria-carter'),
-('hannah.mitchell@example.com', 'Hannah', 'Mitchell', '555-1515', 'https://linkedin.com/in/hannah-mitchell'),
-('zoe.perry@example.com', 'Zoe', 'Perry', '555-1616', 'https://linkedin.com/in/zoe-perry');
+INSERT INTO mentors (email, first_name, last_name, phone_number, linkedin, photo) VALUES
+('sara.smith@example.com', 'Sara', 'Smith', '555-1234', 'https://linkedin.com/in/sara-smith', 'person1.svg'),
+('emma.johnson@example.com', 'Emma', 'Johnson', '555-5678', 'https://linkedin.com/in/emma-johnson', 'person2.svg'),
+('olivia.brown@example.com', 'Olivia', 'Brown', '555-9101', 'https://linkedin.com/in/olivia-brown', 'person3.svg'),
+('ava.jones@example.com', 'Ava', 'Jones', '555-2345', 'https://linkedin.com/in/ava-jones', 'person4.svg'),
+('isabella.garcia@example.com', 'Isabella', 'Garcia', '555-6789', 'https://linkedin.com/in/isabella-garcia', 'person5.svg'),
+('mia.martinez@example.com', 'Mia', 'Martinez', '555-1122', 'https://linkedin.com/in/mia-martinez', 'person6.svg'),
+('amelia.rodriguez@example.com', 'Amelia', 'Rodriguez', '555-3344', 'https://linkedin.com/in/amelia-rodriguez', 'person7.svg'),
+('harper.hernandez@example.com', 'Harper', 'Hernandez', '555-5566', 'https://linkedin.com/in/harper-hernandez', 'person1.svg'),
+('evelyn.lopez@example.com', 'Evelyn', 'Lopez', '555-7788', 'https://linkedin.com/in/evelyn-lopez', 'person2.svg'),
+('abigail.moore@example.com', 'Abigail', 'Moore', '555-9911', 'https://linkedin.com/in/abigail-moore', 'person3.svg'),
+('sofia.gonzalez@example.com', 'Sofia', 'Gonzalez', '555-2233', 'https://linkedin.com/in/sofia-gonzalez', 'person4.svg'),
+('avery.hill@example.com', 'Avery', 'Hill', '555-4455', 'https://linkedin.com/in/avery-hill', 'person5.svg'),
+('ella.scott@example.com', 'Ella', 'Scott', '555-6677', 'https://linkedin.com/in/ella-scott', 'person6.svg'),
+('lily.green@example.com', 'Lily', 'Green', '555-8899', 'https://linkedin.com/in/lily-green', 'person7.svg'),
+('chloe.adams@example.com', 'Chloe', 'Adams', '555-1010', 'https://linkedin.com/in/chloe-adams', 'person1.svg'),
+('nora.baker@example.com', 'Nora', 'Baker', '555-1212', 'https://linkedin.com/in/nora-baker', 'person2.svg'),
+('scarlett.nelson@example.com', 'Scarlett', 'Nelson', '555-1313', 'https://linkedin.com/in/scarlett-nelson', 'person3.svg'),
+('aria.carter@example.com', 'Aria', 'Carter', '555-1414', 'https://linkedin.com/in/aria-carter', 'person4.svg'),
+('hannah.mitchell@example.com', 'Hannah', 'Mitchell', '555-1515', 'https://linkedin.com/in/hannah-mitchell', 'person5.svg'),
+('zoe.perry@example.com', 'Zoe', 'Perry', '555-1616', 'https://linkedin.com/in/zoe-perry', 'person6.svg');
 
 -- Insert associated programming languages for each mentor
 INSERT INTO languages (email, programming_language) VALUES
