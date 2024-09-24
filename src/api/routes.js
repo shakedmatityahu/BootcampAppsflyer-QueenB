@@ -30,6 +30,6 @@ router.get("/getMentorDetailsByEmail/:email", controller.getMentorDetailsByEmail
 router.delete("/deleteMentees/:email", controller.deleteMentee);
 
 // get mentors by search route
-router.get("/searchMentors/:searchTerm", controller.searchMentors)
+router.get("/searchMentors/:searchWord", controller.searchMentors)
 
 module.exports = router;

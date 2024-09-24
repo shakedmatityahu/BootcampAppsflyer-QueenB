@@ -101,9 +101,7 @@ const signup = async (req, res) => {
           phone_number,
           linkedin,
         ]);
-        if (programming_language) {
-          pool.query(queries.addMentorLangs, [email, programming_language]);
-        }
+        programming_language.every(lang => pool.query(queries.addMentorLangs, [email, lang]))
       }
 
       res.status(200).json({ email, userType });
@@ -255,25 +253,13 @@ const validateProgrammingLanguage = (programming_language) => {
 };
 
 const searchMentors = async (req, res) => {
-  const { searchTerm } = req.params;
-  try {
-    const query = `
-      SELECT * FROM mentors 
-      WHERE LOWER(first_name) LIKE LOWER($1) 
-      OR LOWER(last_name) LIKE LOWER($1) 
-      OR LOWER(email) LIKE LOWER($1) 
-      OR phone_number LIKE $1 
-      OR programming_languages::text ILIKE $1
-    `;
-    const values = [`%${searchTerm}%`];  // Search term is case-insensitive
-    const result = await pool.query(query, values);
+  const { searchWord } = req.params;
 
-    if (result.rows.length === 0) {
-      return res.status(200).json([]); // Return empty array if no mentors found
-    }
-    res.status(200).json(result.rows);
+  try {
+    const result = await pool.query(queries.searchMentors, [searchWord]);
+    res.status(200).json(result.rows);  
   } catch (error) {
-    res.status(500).send({ error: "Error searching for mentors" });
+    throw error;
   }
 };
 
@@ -286,5 +272,5 @@ module.exports = {
   login,
   getMentorDetailsByEmail,
   deleteMentee,
-  searchMentors,  // Export searchMentors
+  searchMentors,
 };
