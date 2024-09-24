@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import MentorCard from "./MentorCard";
+
 import './MentorsDetails.css'; // Import custom styles for the grid
 
-const MentorsDetails = () => {
+
+
+let imageIndex = 0;
+
+const MentorsDetails = ({ searchTerm }) => {
   const [mentors, setMentors] = useState([]);
   const [searchWord, setSearchWord] = useState("");
 
@@ -55,10 +60,14 @@ const MentorsDetails = () => {
   return (
     <div className="mentors-container">
       <div className="card-container">
-        {mentors.length === 0 && <div>No mentors found</div>}
-        {mentors.map((mentor) => (
-          <MentorCard key={mentor.email} mentor={mentor} />
-        ))}
+        {filteredMentors.length > 0 ? (
+          filteredMentors.map((mentor) => (
+            <MentorCard key={mentor.email} mentor={mentor} image_index={imageIndex++} />
+            
+          ))
+        ) : (
+          <p>No mentors found matching your search.</p>
+        )}
       </div>
     </div>
   );

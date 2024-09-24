@@ -8,31 +8,24 @@ import person4 from "../images/person4.svg";
 import person5 from "../images/person5.svg";
 import person6 from "../images/person6.svg";
 import person7 from "../images/person7.svg";
-import './MentorCard.css'; // Import custom styles for the grid
+import "./MentorCard.css"; // Import custom styles for the grid
 
-const images = {
-  person1,
-  person2,
-  person3,
-  person4,
-  person5,
-  person6,
-  person7,
-};
+const images = [person1, person2, person3, person4, person5, person6, person7];
 
-const MentorCard = ({ mentor }) => {
+const MentorCard = ({ mentor, image_index }) => {
 
   const [showMentorDetails, setShowMentorDetails] = useState(false)
   const handleCloseMentorDetails = () => setShowMentorDetails(false)
   const handleShowMentorDetails = () => setShowMentorDetails(true)
   // TODO - change the image to be dynamic
+  const image_src = images[image_index % images.length];
 
   return (
     <>
 <div className="mentor-card" style={{ width: "18rem", position: "relative" }}>
   <button onClick={handleShowMentorDetails} className="mentor-card-button">
         {/* Make sure the path to the image is correct */}
-        <img src={person5} alt="" className="imag" />
+        <img src={image_src} alt="" className="imag" />
         <div className="card-body">
           <h5 className="card-title">
             <h3>
