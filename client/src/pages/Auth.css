@@ -103,6 +103,8 @@
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 15px;
+  color: #666;
+
 }
 
 /* Styling for each language tag */
@@ -184,6 +186,17 @@
 
 .auth-button:hover {
   background-color: #d94175;
+}
+
+.auth-container select {
+  width: 100%;
+  padding: 12px 16px;
+  margin: 15px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #f8f8f8;
+  color: #666;
 }
 
 .auth-container a.logout-link {

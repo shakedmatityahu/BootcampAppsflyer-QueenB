@@ -1,6 +1,6 @@
 .imag {
   padding: 16px 20px;
-  /* height: 340px;  */
+  height: 340px; 
   border-radius: 10px; 
   object-fit: cover;
 }
