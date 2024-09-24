@@ -1,16 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
-
-import person1 from "../images/person1.svg";
-import person2 from "../images/person2.svg";
-import person3 from "../images/person3.svg";
-import person4 from "../images/person4.svg";
-import person5 from "../images/person5.svg";
-import person6 from "../images/person6.svg";
-import person7 from "../images/person7.svg";
+import avatarImages from "./avatarImages";
 import "./MentorCard.css"; // Import custom styles for the grid
-
-const images = [person1, person2, person3, person4, person5, person6, person7];
 
 const MentorCard = ({ mentor, image_index }) => {
 
@@ -18,7 +9,7 @@ const MentorCard = ({ mentor, image_index }) => {
   const handleCloseMentorDetails = () => setShowMentorDetails(false)
   const handleShowMentorDetails = () => setShowMentorDetails(true)
   // TODO - change the image to be dynamic
-  const image_src = images[image_index % images.length];
+  const image_src = avatarImages[image_index % avatarImages.length];
 
   return (
     <>

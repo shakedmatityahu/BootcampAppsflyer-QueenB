@@ -2,7 +2,6 @@ const bcrypt = require("bcrypt");
 const pool = require("./db");
 const queries = require("./queries");
 const SALT_ROUNDS = 10;
-const ALLWOED_LANGUAGES = ["Java", "Python", "JavaScript", "C++", "GO"];
 
 // GET all users
 const getAllUsers = (req, res) => {
@@ -60,11 +59,6 @@ const signup = async (req, res) => {
 
     if (!validatePassword(password)) {
       res.status(400).send({ error: "Password must be at least 6 characters" });
-      return;
-    }
-
-    if (!validateProgrammingLanguage(programming_language)) {
-      res.status(400).send({ error: "Invalid programming language" });
       return;
     }
 
@@ -238,18 +232,6 @@ const validateEmail = (email) => {
 //validate password
 const validatePassword = (password) => {
   return password.length >= 6;
-};
-
-const validateProgrammingLanguage = (programming_language) => {
-  // Check if it's an array
-  if (!Array.isArray(programming_language)) {
-    return false; // Not an array, invalid input
-  }
-
-  // Check if every language in the array is valid
-  return programming_language.every((lang) =>
-    ALLWOED_LANGUAGES.includes(lang)
-  );
 };
 
 const searchMentors = async (req, res) => {
