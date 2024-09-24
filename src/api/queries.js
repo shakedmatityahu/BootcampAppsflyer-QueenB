@@ -9,7 +9,8 @@ const getMentors = `
         m.last_name,
         m.phone_number,
         m.linkedin,
-        STRING_AGG(l.programming_language, ', ') AS programming_languages
+        STRING_AGG(l.programming_language, ', ') AS programming_languages,
+        m.photo
       FROM
           mentors m
       LEFT JOIN
@@ -27,7 +28,7 @@ const checkEmail = "SELECT * FROM users WHERE email = $1";
 
 // create new mentor account
 const createMentor =
-  "INSERT INTO mentors (email, first_name, last_name, phone_number, linkedin) VALUES ($1, $2, $3, $4, $5);";
+  "INSERT INTO mentors (email, first_name, last_name, phone_number, linkedin, photo) VALUES ($1, $2, $3, $4, $5, $6);";
 
 // add mentor languages
 const addMentorLangs =
@@ -41,7 +42,7 @@ const deleteMentorsFromUsers = "DELETE FROM users WHERE email = $1";
 
 // update mentor details
 const updateMentor =
-  "UPDATE mentors SET first_name = $1, last_name = $2, phone_number = $3, linkedin = $4 WHERE email = $5;";
+  "UPDATE mentors SET first_name = $1, last_name = $2, phone_number = $3, linkedin = $4, photo = $5 WHERE email = $6;";
 
 const signup =
   "INSERT INTO users (email, password, userType) VALUES ($1, $2, $3);";
@@ -58,7 +59,8 @@ const searchMentors = `
     m.last_name,
     m.phone_number,
     m.linkedin,
-    STRING_AGG(l.programming_language, ', ') AS programming_languages
+    STRING_AGG(l.programming_language, ', ') AS programming_languages,
+    m.photo
   FROM
     mentors m
   LEFT JOIN
