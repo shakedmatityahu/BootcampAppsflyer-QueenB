@@ -101,9 +101,7 @@ const signup = async (req, res) => {
           phone_number,
           linkedin,
         ]);
-        if (programming_language) {
-          pool.query(queries.addMentorLangs, [email, programming_language]);
-        }
+        programming_language.every(lang => pool.query(queries.addMentorLangs, [email, lang]))
       }
 
       res.status(200).json({ email, userType });
@@ -254,6 +252,17 @@ const validateProgrammingLanguage = (programming_language) => {
   );
 };
 
+const searchMentors = async (req, res) => {
+  const { searchWord } = req.params;
+
+  try {
+    const result = await pool.query(queries.searchMentors, [searchWord]);
+    res.status(200).json(result.rows);  
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   getMentors,
   signup,
@@ -263,4 +272,5 @@ module.exports = {
   login,
   getMentorDetailsByEmail,
   deleteMentee,
+  searchMentors,
 };

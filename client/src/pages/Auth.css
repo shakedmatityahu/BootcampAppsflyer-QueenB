@@ -186,27 +186,28 @@
   background-color: #d94175;
 }
 
-.logout-link {
-  text-align: right;
+.auth-container a.logout-link {
+  text-align: center;
+  align-items: center;
   color: #ea4c89;
   text-decoration: none;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
-.logout-link:hover {
-  color: #d94175;
+.auth-container a.logout-link:hover {
+  color: #d14076;
 }
 
-.error-message {
+.auth-container p.error-message {
   color: red;
 }
 
-.success-message {
+.auth-container p.success-message {
   color: green;
 }
 
 /* Modal close button */
-.modal-close-btn {
+.auth-container .modal-close-btn {
   background-color: #ea4c89;
   color: white;
   border: none;
@@ -224,11 +225,6 @@
   margin: 50px auto;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-.home-subtitle {
-    font-size: .8rem;
-    color: #363232;
-    margin-bottom: 40px;
-  }
 
 .home-section h2 {
   text-align: center;
@@ -239,5 +235,3 @@
 .home-section .auth-container {
   padding: 20px;
 }
-
-/* MentorsDetails styling can be done here if needed */
