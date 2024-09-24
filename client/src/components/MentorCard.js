@@ -45,7 +45,7 @@ const MentorCard = ({ mentor, image_index }) => {
           <Modal.Title>{mentor.first_name} {mentor.last_name}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-      <img src={person5} alt="" className="imag" />
+      <img src={image_src} alt="" className="imag" />
         <div className="card-body">
           {/* <h5 className="card-title">
           </h5> */}
