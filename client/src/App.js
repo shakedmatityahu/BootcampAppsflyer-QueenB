@@ -9,6 +9,7 @@ import Signup from "./pages/Signup";
 import Navbar from "./components/Navbar"; // if Navbar is inside a components folder
 import MentorsBrowse from './pages/MentorsBrowse';
 import Profile from './pages/Profile';
+import Messages from './pages/Messages';
 
 const App = () => {
   const { user } = useAuthContext();
@@ -27,6 +28,8 @@ const App = () => {
             <Route path="/" element={<WelcomePage />} />
             <Route path="/MentorsBrowse" element={<MentorsBrowse />} />
             <Route path="/Profile" element={<Profile />} />
+            <Route path="/Messages" element={<Messages />} />
+
 
 
             {/* Route for the signup page */}

@@ -29,6 +29,16 @@ CREATE TABLE IF NOT EXISTS users (
     userType VARCHAR(50) NOT NULL
 );
 
+-- Create the messages table
+CREATE TABLE IF NOT EXISTS messages (
+    message_id SERIAL PRIMARY KEY,
+    sender VARCHAR(255),
+    recipient VARCHAR(255),
+    message VARCHAR(500),
+    FOREIGN KEY (sender) REFERENCES users(email) ON DELETE CASCADE,
+    FOREIGN KEY (recipient) REFERENCES users(email) ON DELETE CASCADE
+);
+
 -- Insert data into the user table for the 20 female mentors - Passwords are identical 'password123' hashed using bcrypt
 INSERT INTO users (email, password, userType) VALUES
 ('sara.smith@example.com', '$2b$10$1uikHH/2gB66adnCHtbLge2OYyO8ot8KhDgx6qwQogg2RxLMgaFf2', 'mentor'),  
@@ -103,3 +113,17 @@ INSERT INTO languages (email, programming_language) VALUES
 ('aria.carter@example.com', 'TypeScript'),
 ('hannah.mitchell@example.com', 'C++'),
 ('zoe.perry@example.com', 'Scala');
+
+
+-- Insert messages from mentees to mentors
+INSERT INTO messages (sender, recipient, message) VALUES
+('lucy.wilson@example.com', 'sara.smith@example.com', 'Hi Sara, I am new to Python and was hoping you could help me get started with some basic concepts.'),
+('grace.thomas@example.com', 'emma.johnson@example.com', 'Hi Emma, I’m struggling with some Java concepts. Could you explain how inheritance works in Java?'),
+('ella.clark@example.com', 'olivia.brown@example.com', 'Hi Olivia, I love frontend development but need advice on improving my JavaScript skills. Any tips?'),
+('sophie.turner@example.com', 'ava.jones@example.com', 'Hi Ava, I am working on a Ruby project and would love your input on how to structure my code better.'),
+('ruby.evans@example.com', 'isabella.garcia@example.com', 'Hi Isabella, I am interested in machine learning and would love to learn more about how Python can be used for that. Can we chat?'),
+('lucy.wilson@example.com', 'mia.martinez@example.com', 'Hi Mia, I am new to C++ and could really use some help understanding pointers. Can you guide me?'),
+('grace.thomas@example.com', 'amelia.rodriguez@example.com', 'Hi Amelia, I am building a web application in JavaScript, and I need some advice on using frameworks. Which framework do you recommend for beginners?'),
+('ella.clark@example.com', 'harper.hernandez@example.com', 'Hi Harper, I’m learning C# and would appreciate it if you could share some best practices for writing clean code.'),
+('sophie.turner@example.com', 'evelyn.lopez@example.com', 'Hi Evelyn, I am struggling with PHP and would love some advice on how to optimize performance for a backend API.'),
+('ruby.evans@example.com', 'abigail.moore@example.com', 'Hi Abigail, I’m interested in data science and would love to hear your advice on how to get started with Python for data analysis.');

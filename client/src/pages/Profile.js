@@ -174,7 +174,9 @@ const Profile = () => {
               placeholder="LinkedIn URL"
             />
             <label>About Me</label>
-            <input
+            
+            <textarea
+              className="about-me"
               name="about_me"
               value={mentorDetails.about_me}
               onChange={handleMentorDetailsInput}
@@ -183,39 +185,44 @@ const Profile = () => {
 
             {/* Avatar selection */}
             <div className="avatar-selection">
-              <p>Choose an Avatar:</p>
-              <button type="button" onClick={openAvatarModal}>
-                {selectedAvatar ? (
-                  <img
-                    src={avatarImages[mentorDetails.photo[6] - 1]}
-                    // alt="Selected Avatar"
-                    className="avatar-option"
-                  />
-                ) : (
-                  "Select Avatar"
-                )}
-              </button>
-            </div>
+                        <p>Choose an Avatar:</p>
+                        <button type="button" onClick={openAvatarModal}>
+                            {selectedAvatar ? (
+                                <img
+                                    src={avatarImages[mentorDetails.photo[6] - 1]}
+                                    // alt="Selected Avatar"
+                                    className="selected-avatar"
+                                    width="50"
+                                    height="50"
+                                />
+                            ) : (
+                                "Select Avatar"
+                            )}
+                        </button>
+                    </div>
 
-            {/* Avatar Modal */}
-            {showAvatarModal && (
-              <div className="avatar-modal">
-                <div className="avatar-modal-content">
-                  <div className="avatar-grid">
-                    {avatarImages.map((avatar, index) => (
-                      <img
-                        key={index}
-                        src={avatar}
-                        alt={`Avatar ${index + 1}`}
-                        className="avatar-optio choose"
-                        onClick={() => handleAvatarSelection(avatar)}
-                      />
-                    ))}
-                  </div>
-                  <button onClick={closeAvatarModal} className="avatar-selection">Close</button>
-                </div>
-              </div>
-            )}
+                    {/* Avatar Modal */}
+                    {showAvatarModal && (
+                        <div className="avatar-modal">
+                            <div className="avatar-modal-content">
+                                <h3>Select an Avatar</h3>
+                                <div className="avatar-grid">
+                                    {avatarImages.map((avatar, index) => (
+                                        <img
+                                            key={index}
+                                            src={avatar}
+                                            alt={`Avatar ${index + 1}`}
+                                            className="avatar-option"
+                                            width="50"
+                                            height="50"
+                                            onClick={() => handleAvatarSelection(avatar)}
+                                        />
+                                    ))}
+                                </div>
+                                <button onClick={closeAvatarModal}>Close</button>
+                            </div>
+                        </div>
+                    )}
           </>
         )}
 

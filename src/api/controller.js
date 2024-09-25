@@ -246,6 +246,29 @@ const searchMentors = async (req, res) => {
   }
 };
 
+const getMessages = async (req, res) => {
+  const recipient = req.params.email;
+
+  try {
+    const result = await pool.query(queries.getMessages, [recipient]);
+    res.status(200).json(result.rows);
+  } catch (error) {
+    throw error;
+  }
+};
+
+const sendMessage = async (req, res) => {
+  const { sender, message } = req.body;
+  const recipient = req.params.email;
+
+  try {
+    const result = await pool.query(queries.sendMessage, [sender, recipient, message]);
+    res.status(200).json(result.rows);
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports = {
   getMentors,
   signup,
@@ -256,4 +279,6 @@ module.exports = {
   getMentorDetailsByEmail,
   deleteMentee,
   searchMentors,
+  getMessages,
+  sendMessage,
 };
