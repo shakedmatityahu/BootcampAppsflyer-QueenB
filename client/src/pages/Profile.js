@@ -4,6 +4,7 @@ import { Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
 import './Auth.css'; // Assuming you are using the same auth styles for consistency
+import avatarImages from "../components/avatarImages";
 
 const Profile = () => {
   const { user } = useAuthContext();
@@ -18,6 +19,23 @@ const Profile = () => {
   const [approveDeleteSuccess, setApproveDeleteSuccess] = useState(null);
   const [showDeleteApproveMsg, setShowDeleteApproveMsg] = useState(false);
 
+  const [showAvatarModal, setShowAvatarModal] = useState(false); 
+  const [selectedAvatar, setSelectedAvatar] = useState("");
+
+  const openAvatarModal = () => {
+    setShowAvatarModal(true);
+  };
+
+  const closeAvatarModal = () => {
+      setShowAvatarModal(false);
+  };
+
+  const handleAvatarSelection = (avatar) => {
+      setSelectedAvatar(avatar);
+      setMentorDetails({ ...mentorDetails, ["photo"]: avatar.split("/").pop().split(".")[0] + ".svg" });
+      setShowAvatarModal(false);
+  };
+
   const handleCloseDeleteApproveMsg = () => {
     if (approveDeleteSuccess) {
       logout();
@@ -27,7 +45,6 @@ const Profile = () => {
   };
 
   const handleShowDeleteApproveMsg = () => setShowDeleteApproveMsg(true);
-  // const handleLogoutBtn = () => logout();
 
   useEffect(() => {
     setError(null);
@@ -49,6 +66,7 @@ const Profile = () => {
 
       if (response.ok) {
         setMentorDetails(json);
+        setSelectedAvatar(json.photo)
       }
     };
 
@@ -123,9 +141,6 @@ const Profile = () => {
     <section className="mentor-home">
       <div className="auth-container">
 
-        {/* <a href="/" onClick={handleLogoutBtn} className="logout-link">
-          Log Out
-        </a> */}
         {mentorDetails && (
           <>
             <label>First Name</label>
@@ -159,6 +174,47 @@ const Profile = () => {
               onChange={handleMentorDetailsInput}
               placeholder="LinkedIn URL"
             />
+
+            {/* Avatar selection */}
+            <div className="avatar-selection">
+                        <p>Choose an Avatar:</p>
+                        <button type="button" onClick={openAvatarModal}>
+                            {selectedAvatar ? (
+                                <img
+                                    src={selectedAvatar}
+                                    alt="Selected Avatar"
+                                    className="selected-avatar"
+                                    width="50"
+                                    height="50"
+                                />
+                            ) : (
+                                "Select Avatar"
+                            )}
+                        </button>
+                    </div>
+
+                    {/* Avatar Modal */}
+                    {showAvatarModal && (
+                        <div className="avatar-modal">
+                            <div className="avatar-modal-content">
+                                <h3>Select an Avatar</h3>
+                                <div className="avatar-grid">
+                                    {avatarImages.map((avatar, index) => (
+                                        <img
+                                            key={index}
+                                            src={avatar}
+                                            alt={`Avatar ${index + 1}`}
+                                            className="avatar-option"
+                                            width="50"
+                                            height="50"
+                                            onClick={() => handleAvatarSelection(avatar)}
+                                        />
+                                    ))}
+                                </div>
+                                <button onClick={closeAvatarModal}>Close</button>
+                            </div>
+                        </div>
+                    )}
           </>
         )}
 
