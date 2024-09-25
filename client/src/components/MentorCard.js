@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import avatarImages from "./avatarImages";
 import { useAuthContext } from "../hooks/useAuthContext";
 import "./MentorCard.css"; // Import custom styles for the card
@@ -66,7 +66,7 @@ const MentorCard = ({ mentor }) => {
         aria-labelledby={`mentorModalLabel${mentor.id}`}
         aria-hidden="true"
       >
-        <div className="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">
             <div className="modal-header">
               <h1

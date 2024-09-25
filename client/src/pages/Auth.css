@@ -266,3 +266,13 @@
   background-color: #fff;
   color: #ea4c89;
 }
+
+.message {
+  max-width: 50vw;
+}
+
+.message-delete {
+  display: flex;
+  flex-direction: row-reverse;
+  height: 0px;
+}
