@@ -19,7 +19,7 @@ const Profile = () => {
   const [approveDeleteSuccess, setApproveDeleteSuccess] = useState(null);
   const [showDeleteApproveMsg, setShowDeleteApproveMsg] = useState(false);
 
-  const [showAvatarModal, setShowAvatarModal] = useState(false); 
+  const [showAvatarModal, setShowAvatarModal] = useState(false);
   const [selectedAvatar, setSelectedAvatar] = useState("");
 
   const openAvatarModal = () => {
@@ -27,13 +27,13 @@ const Profile = () => {
   };
 
   const closeAvatarModal = () => {
-      setShowAvatarModal(false);
+    setShowAvatarModal(false);
   };
 
   const handleAvatarSelection = (avatar) => {
-      setSelectedAvatar(avatar);
-      setMentorDetails({ ...mentorDetails, ["photo"]: avatar.split("/").pop().split(".")[0] + ".svg" });
-      setShowAvatarModal(false);
+    setSelectedAvatar(avatar);
+    setMentorDetails({ ...mentorDetails, ["photo"]: avatar.split("/").pop().split(".")[0] + ".svg" });
+    setShowAvatarModal(false);
   };
 
   const handleCloseDeleteApproveMsg = () => {
@@ -70,7 +70,7 @@ const Profile = () => {
       }
     };
 
-    if (user && user.userType==='mentor') fetchMentorDetails();
+    if (user && user.userType === 'mentor') fetchMentorDetails();
   }, [user]);
 
   const handleMentorDetailsInput = (e) => {
@@ -117,9 +117,8 @@ const Profile = () => {
     console.log(user.userType);
     setApproveDeleteError(null);
     setApproveDeleteSuccess(null);
-    const url = `http://localhost:5001/api/${
-      user.userType === "mentor" ? "deleteMentors" : "deleteMentees"
-    }/${user.email}`;
+    const url = `http://localhost:5001/api/${user.userType === "mentor" ? "deleteMentors" : "deleteMentees"
+      }/${user.email}`;
     const response = await fetch(url, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
@@ -175,7 +174,7 @@ const Profile = () => {
               placeholder="LinkedIn URL"
             />
             <label>About Me</label>
-            <input 
+            <input
               name="about_me"
               value={mentorDetails.about_me}
               onChange={handleMentorDetailsInput}
@@ -184,44 +183,39 @@ const Profile = () => {
 
             {/* Avatar selection */}
             <div className="avatar-selection">
-                        <p>Choose an Avatar:</p>
-                        <button type="button" onClick={openAvatarModal}>
-                            {selectedAvatar ? (
-                                <img
-                                    src={avatarImages[mentorDetails.photo[6] - 1]}
-                                    // alt="Selected Avatar"
-                                    className="selected-avatar"
-                                    width="50"
-                                    height="50"
-                                />
-                            ) : (
-                                "Select Avatar"
-                            )}
-                        </button>
-                    </div>
+              <p>Choose an Avatar:</p>
+              <button type="button" onClick={openAvatarModal}>
+                {selectedAvatar ? (
+                  <img
+                    src={avatarImages[mentorDetails.photo[6] - 1]}
+                    // alt="Selected Avatar"
+                    className="avatar-option"
+                  />
+                ) : (
+                  "Select Avatar"
+                )}
+              </button>
+            </div>
 
-                    {/* Avatar Modal */}
-                    {showAvatarModal && (
-                        <div className="avatar-modal">
-                            <div className="avatar-modal-content">
-                                <h3>Select an Avatar</h3>
-                                <div className="avatar-grid">
-                                    {avatarImages.map((avatar, index) => (
-                                        <img
-                                            key={index}
-                                            src={avatar}
-                                            alt={`Avatar ${index + 1}`}
-                                            className="avatar-option"
-                                            width="50"
-                                            height="50"
-                                            onClick={() => handleAvatarSelection(avatar)}
-                                        />
-                                    ))}
-                                </div>
-                                <button onClick={closeAvatarModal}>Close</button>
-                            </div>
-                        </div>
-                    )}
+            {/* Avatar Modal */}
+            {showAvatarModal && (
+              <div className="avatar-modal">
+                <div className="avatar-modal-content">
+                  <div className="avatar-grid">
+                    {avatarImages.map((avatar, index) => (
+                      <img
+                        key={index}
+                        src={avatar}
+                        alt={`Avatar ${index + 1}`}
+                        className="avatar-optio choose"
+                        onClick={() => handleAvatarSelection(avatar)}
+                      />
+                    ))}
+                  </div>
+                  <button onClick={closeAvatarModal} className="avatar-selection">Close</button>
+                </div>
+              </div>
+            )}
           </>
         )}
 
@@ -237,11 +231,11 @@ const Profile = () => {
 
         {/* error check for fetching user information (for mentors only) */}
         {user.userType === 'mentor' && error && (
-          <p className="error-message">{error}</p>
+          <p class="alert alert-danger" role="alert">{error}</p>
         )}
 
         {/* success check for update information (for mentors only) */}
-        {success && <p className="success-message">{success}</p>} 
+        {success && <p class="alert alert-success" role="alert">{success}</p>}
 
         <Modal
           show={showDeleteApproveMsg}
