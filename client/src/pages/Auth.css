@@ -18,7 +18,7 @@
 }
 
 /* Input fields styling */
-.auth-container input {
+.auth-container input , .about-me, .message {
   width: 100%;
   padding: 12px 16px;
   margin: 10px 0;
@@ -248,3 +248,8 @@
 .home-section .auth-container {
   padding: 20px;
 }
+
+/* .message {
+  text-align: center;
+  margin-top: 20px;
+} */

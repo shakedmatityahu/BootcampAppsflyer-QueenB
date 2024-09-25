@@ -2,13 +2,32 @@ import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import "./MentorCard.css"; // Import custom styles for the gavatarImagesrid
 import avatarImages from "./avatarImages";
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const MentorCard = ({ mentor }) => {
+  const { user } = useAuthContext();
   const [showMentorDetails, setShowMentorDetails] = useState(false);
+  const [message, setMessage] = useState("");
   const handleCloseMentorDetails = () => setShowMentorDetails(false);
   const handleShowMentorDetails = () => setShowMentorDetails(true);
   // TODO - change the image to be dynamic
   const image_src = avatarImages[mentor.photo[6] - 1];
+
+  const sendMessage = async () => {
+    const response = await fetch(`http://localhost:5001/api/sendMessage/${mentor.email}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({sender: user.email, message}),
+    });
+
+    if (response.ok) {
+      alert("Message sent successfully");
+      setMessage("");
+    }
+  }
+
 
   return (
     <>
@@ -54,6 +73,11 @@ const MentorCard = ({ mentor }) => {
             {/* <h5 className="card-title">
           </h5> */}
             <p>{mentor.programming_languages.split(", ").join(", ")}</p>
+          </div>
+          <div> 
+            <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Message"/>
+            <button onClick={(e) => sendMessage()}>
+              Send</button>
           </div>
         </Modal.Body>
         <Modal.Footer>

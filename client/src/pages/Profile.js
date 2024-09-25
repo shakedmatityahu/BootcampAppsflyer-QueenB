@@ -178,7 +178,9 @@ const Profile = () => {
               placeholder="LinkedIn URL"
             />
             <label>About Me</label>
-            <input 
+            
+            <textarea
+              className="about-me"
               name="about_me"
               value={mentorDetails.about_me}
               onChange={handleMentorDetailsInput}
@@ -187,8 +189,8 @@ const Profile = () => {
 
             {/* Avatar selection */}
             <div className="avatar-selection">
-                        <p>Choose an Avatar:</p>
-                        <button type="button" onClick={openAvatarModal}>
+                        <label>Choose an Avatar</label>
+                        <button className="mb-3" type="button" onClick={openAvatarModal}>
                             {selectedAvatar ? (
                                 <img
                                     src={avatarImages[mentorDetails.photo[6] - 1]}
@@ -207,7 +209,6 @@ const Profile = () => {
                     {showAvatarModal && (
                         <div className="avatar-modal">
                             <div className="avatar-modal-content">
-                                <h3>Select an Avatar</h3>
                                 <div className="avatar-grid">
                                     {avatarImages.map((avatar, index) => (
                                         <img

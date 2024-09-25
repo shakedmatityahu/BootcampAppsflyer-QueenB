@@ -82,6 +82,13 @@ const searchMentors = `
     m.email;
   `;
 
+const getMessages = `SELECT m.sender, m.message FROM messages m WHERE recipient = $1`;
+
+const sendMessage = `INSERT INTO messages (sender, recipient, message) VALUES ($1, $2, $3)`;
+
+
+
+
 module.exports = {
   getAllUsers,
   getMentors,
@@ -95,4 +102,6 @@ module.exports = {
   getMentorDetailsByEmail,
   deleteMentorsFromUsers,
   searchMentors,
+  getMessages,
+  sendMessage,
 };

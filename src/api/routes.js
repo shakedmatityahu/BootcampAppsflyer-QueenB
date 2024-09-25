@@ -32,4 +32,10 @@ router.delete("/deleteMentees/:email", controller.deleteMentee);
 // get mentors by search route
 router.get("/searchMentors/:searchWord", controller.searchMentors)
 
+// get messages route
+router.get("/getMessages/:email", controller.getMessages)
+
+// send message route
+router.post("/sendMessage/:email", controller.sendMessage)
+
 module.exports = router;
