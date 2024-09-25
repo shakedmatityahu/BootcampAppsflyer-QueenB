@@ -59,6 +59,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 /* Style for the search input field */
@@ -71,11 +72,12 @@
   transition: all 0.3s ease;
   background-color: #fff;
   width: 200px;
+  justify-content: center;
 }
 
 .search-icon {
-  position: absolute;
-  left: 10px;
+  position: relative;
+  left: 23px;
   width: 15px;
   height: 15px;
   color: #aaa;

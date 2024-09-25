@@ -8,30 +8,27 @@ const MentorCard = ({ mentor }) => {
   const handleCloseMentorDetails = () => setShowMentorDetails(false);
   const handleShowMentorDetails = () => setShowMentorDetails(true);
   // TODO - change the image to be dynamic
-  const image_src = images[image_index % images.length];
+  const image_src = avatarImages[mentor.photo[6] - 1];
 
   return (
     <>
       <div
         className="mentor-card"
-        style={{ width: "18rem", position: "relative" }}
+        style={{ width: "16rem", position: "relative" }}
       >
         <button
           onClick={handleShowMentorDetails}
           className="mentor-card-button"
         >
           {/* Make sure the path to the image is correct */}
-          <img src={image_src} alt="" className="imag" />
-          <div className="card-body">
-            <h5 className="card-title">
-              <h3>
+          <img src={image_src} alt="" className="card-image" />
+          <div className="card-title">
                 {mentor.first_name} {mentor.last_name}
-              </h3>
-            </h5>
-            <p className="card-text">
-              <p>{mentor.programming_languages.split(", ").join(", ")}</p>
-            </p>
-          </div>
+                <p className="card-desc">
+  {mentor.programming_languages.split(", ").map((language, index) => (
+    <span key={index} className="language-tag">{language}</span>
+  ))}
+</p>          </div>
         </button>
       </div>
 
@@ -41,10 +38,8 @@ const MentorCard = ({ mentor }) => {
           <Modal.Title>{mentor.first_name} {mentor.last_name}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-      <img src={image_src} alt="" className="imag" />
-        <div className="card-body">
-          {/* <h5 className="card-title">
-          </h5> */}
+      <img src={image_src} alt="" className="card-image" />
+        <div className="modal-desc">
             <p>{mentor.programming_languages.split(", ").join(", ")}</p>
           </div>
         </Modal.Body>

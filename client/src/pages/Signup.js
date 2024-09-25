@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import { useSignup } from "../hooks/useSignup";
 import "./Auth.css";
 import avatarImages from "../components/avatarImages";
-import React, { useState } from "react";
-import { useSignup } from "../hooks/useSignup";
-import "./Auth.css";
-import avatarImages from "../components/avatarImages";
 
 const Signup = () => {
     const { signup, error } = useSignup();
