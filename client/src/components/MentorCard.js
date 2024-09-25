@@ -54,6 +54,7 @@ const MentorCard = ({ mentor }) => {
               ></button>
             </div>
             <div className="modal-body">
+              {mentor.about_me}
               <img src={image_src} alt="" className="card-image" />
               <div className="modal-desc">
                 <p>{mentor.programming_languages.split(", ").join(", ")}</p>

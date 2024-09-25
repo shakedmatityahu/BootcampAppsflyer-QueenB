@@ -133,3 +133,7 @@ input.search-bar {
   background-color: #d93c7a;
   /* Change background on hover */
 }
+
+.logout-link:hover {
+    opacity: 50%;
+}
