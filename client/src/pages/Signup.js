@@ -30,6 +30,7 @@ const Signup = () => {
     const [selectedLanguages, setSelectedLanguages] = useState([]); // Store selected languages
     const [selectedAvatar, setSelectedAvatar] = useState("");
     const [photo, setPhoto] = useState("")
+    const [about_me, setAboutMe] = useState("");
 
     const [showMentorFields, setShowMentorFields] = useState(false);
 
@@ -43,6 +44,7 @@ const Signup = () => {
             last_name,
             phone_number,
             linkedin,
+            about_me,
             selectedLanguages,
             photo
         );
@@ -146,6 +148,11 @@ const Signup = () => {
                                 onChange={(e) => setLinkedin(e.target.value)}
                                 value={linkedin}
                                 placeholder="Linkedin URL"
+                            />
+                            <input 
+                                onChange={(e) => setAboutMe(e.target.value)}
+                                value={about_me}
+                                placeholder="About Me" 
                             />
                             <div>
                                 <select onChange={handleLanguageChange}>
