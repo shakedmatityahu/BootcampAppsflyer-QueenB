@@ -1,5 +1,7 @@
 .mentors-container {
     padding: 20px; 
+    justify-items: center;
+    align-content: center;
   }
   
   .mentors-title {
@@ -11,5 +13,8 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 25px;
+    max-width: 96vw;
+    align-content: center;
+    justify-items: center;
   }
   

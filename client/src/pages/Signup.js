@@ -193,15 +193,12 @@ const Signup = () => {
 
                             {/* Avatar selection */}
                             <div className="avatar-selection">
-                                <p>Choose an Avatar:</p>
                                 <button type="button" onClick={openAvatarModal}>
                                     {selectedAvatar ? (
                                         <img
                                             src={selectedAvatar}
                                             alt="Selected Avatar"
-                                            className="selected-avatar"
-                                            width="50"
-                                            height="50"
+                                            className="avatar-option"
                                         />
                                     ) : (
                                         "Select Avatar"
@@ -213,28 +210,25 @@ const Signup = () => {
                             {showAvatarModal && (
                                 <div className="avatar-modal">
                                     <div className="avatar-modal-content">
-                                        <h3>Select an Avatar</h3>
                                         <div className="avatar-grid">
                                             {avatarImages.map((avatar, index) => (
                                                 <img
                                                     key={index}
                                                     src={avatar}
                                                     alt={`Avatar ${index + 1}`}
-                                                    className="avatar-option"
-                                                    width="50"
-                                                    height="50"
+                                                    className="avatar-option choose"
                                                     onClick={() => handleAvatarSelection(avatar)}
                                                 />
                                             ))}
                                         </div>
-                                        <button onClick={closeAvatarModal}>Close</button>
+                                        <button onClick={closeAvatarModal} className="avatar-selection">Close</button>
                                     </div>
                                 </div>
                             )}
                         </div>
                     )}
 
-                    {error && <p className="error-message">{error}</p>}
+                    {error && <p>{error}</p>}
 
                     <button onClick={handleSignupBtn}>Sign up</button>
                 </form>
