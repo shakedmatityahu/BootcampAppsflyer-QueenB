@@ -177,6 +177,13 @@ const Profile = () => {
               onChange={handleMentorDetailsInput}
               placeholder="LinkedIn URL"
             />
+            <label>About Me</label>
+            <input 
+              name="about_me"
+              value={mentorDetails.about_me}
+              onChange={handleMentorDetailsInput}
+              placeholder="About Me"
+            />
 
             {/* Avatar selection */}
             <div className="avatar-selection">
@@ -184,8 +191,8 @@ const Profile = () => {
                         <button type="button" onClick={openAvatarModal}>
                             {selectedAvatar ? (
                                 <img
-                                    src={selectedAvatar}
-                                    alt="Selected Avatar"
+                                    src={avatarImages[mentorDetails.photo[6] - 1]}
+                                    // alt="Selected Avatar"
                                     className="selected-avatar"
                                     width="50"
                                     height="50"

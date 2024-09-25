@@ -48,6 +48,7 @@ const MentorCard = ({ mentor }) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
+        <p>{mentor.about_me}</p>
           <img src={image_src} alt="" className="imag" />
           <div className="card-body">
             {/* <h5 className="card-title">

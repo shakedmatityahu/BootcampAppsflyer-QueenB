@@ -9,6 +9,7 @@ const getMentors = `
         m.last_name,
         m.phone_number,
         m.linkedin,
+        m.about_me,
         STRING_AGG(l.programming_language, ', ') AS programming_languages,
         m.photo
       FROM
@@ -28,7 +29,7 @@ const checkEmail = "SELECT * FROM users WHERE email = $1";
 
 // create new mentor account
 const createMentor =
-  "INSERT INTO mentors (email, first_name, last_name, phone_number, linkedin, photo) VALUES ($1, $2, $3, $4, $5, $6);";
+  "INSERT INTO mentors (email, first_name, last_name, phone_number, linkedin, about_me, photo) VALUES ($1, $2, $3, $4, $5, $6, $7);";
 
 // add mentor languages
 const addMentorLangs =
@@ -42,7 +43,7 @@ const deleteMentorsFromUsers = "DELETE FROM users WHERE email = $1";
 
 // update mentor details
 const updateMentor =
-  "UPDATE mentors SET first_name = $1, last_name = $2, phone_number = $3, linkedin = $4, photo = $5 WHERE email = $6;";
+  "UPDATE mentors SET first_name = $1, last_name = $2, phone_number = $3, linkedin = $4, about_me = $5, photo = $6 WHERE email = $7;";
 
 const signup =
   "INSERT INTO users (email, password, userType) VALUES ($1, $2, $3);";
@@ -59,6 +60,7 @@ const searchMentors = `
     m.last_name,
     m.phone_number,
     m.linkedin,
+    m.about_me,
     STRING_AGG(l.programming_language, ', ') AS programming_languages,
     m.photo
   FROM
