@@ -74,12 +74,6 @@
   color: #d14076;
 }
 
-/* Error message styling */
-.auth-container p {
-  color: #303030;
-  font-size: 14px;
-}
-
 /* Styling for radio button container */
 .radio-group {
   margin: 15px 0;
@@ -211,14 +205,6 @@
   color: #d14076;
 }
 
-.auth-container p.error-message {
-  color: red;
-}
-
-.auth-container p.success-message {
-  color: green;
-}
-
 /* Modal close button */
 .auth-container .modal-close-btn {
   background-color: #ea4c89;
@@ -247,4 +233,36 @@
 
 .home-section .auth-container {
   padding: 20px;
+}
+
+.avatar-option {
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+  position: relative;
+  font-size: 12px;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  margin-top: -15px;
+}
+
+.avatar-option.choose {
+  margin: 5px;
+}
+
+.avatar-selection button {
+  text-align: center;
+  align-items: center;
+  background-color: transparent;
+  text-decoration: none;
+  margin-bottom: 30px;
+  background-color: #fff;
+  color: #ea4c89;
+}
+
+.avatar-selection button:hover {
+  opacity: 60%;
+  background-color: #fff;
+  color: #ea4c89;
 }

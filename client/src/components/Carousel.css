@@ -9,6 +9,7 @@
   padding: 16px 20px;
   height: 340px; /* Make images responsive */
   border-radius: 10px; /* Optional: Add some styling */
+  margin-right: 20px
 }
 
 /* Hide arrows (if needed) */
