@@ -60,6 +60,7 @@ const signup = async (req, res) => {
         last_name.trim() == "" ||
         phone_number.trim() == "" ||
         linkedin.trim() == "" ||
+        photo.trim() == "" ||
         programming_language.length === 0 // Check if array is empty
       ) {
         res.status(400).send({ error: "All field are required" });

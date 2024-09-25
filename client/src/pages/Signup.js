@@ -8,7 +8,7 @@ const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [userType, setUserType] = useState("mentee");
-    const [selectedAvatar, setSelectedAvatar] = useState(""); // Avatar state
+    
     const [showAvatarModal, setShowAvatarModal] = useState(false); // Modal state
     const ALLOWED_LANGUAGES = [
         "C++",
@@ -28,6 +28,8 @@ const Signup = () => {
     const [phone_number, setPhoneNumber] = useState("");
     const [linkedin, setLinkedin] = useState("");
     const [selectedLanguages, setSelectedLanguages] = useState([]); // Store selected languages
+    const [selectedAvatar, setSelectedAvatar] = useState("");
+    const [photo, setPhoto] = useState("")
 
     const [showMentorFields, setShowMentorFields] = useState(false);
 
@@ -42,7 +44,7 @@ const Signup = () => {
             phone_number,
             linkedin,
             selectedLanguages,
-            selectedAvatar
+            photo
         );
     };
 
@@ -63,7 +65,17 @@ const Signup = () => {
         setSelectedLanguages(newLanguagesArray);
     };
 
-    const handleAvatarSelection = () => {
+    const openAvatarModal = () => {
+        setShowAvatarModal(true);
+    };
+
+    const closeAvatarModal = () => {
+        setShowAvatarModal(false);
+    };
+
+    const handleAvatarSelection = (avatar) => {
+        setSelectedAvatar(avatar);
+        setPhoto(avatar.split("/").pop().split(".")[0] + ".svg")
         setShowAvatarModal(false);
     };
 
@@ -171,44 +183,47 @@ const Signup = () => {
                                     ))}
                                 </div>
                             </div>
-                        </div>
-                    )}
 
-                    <div>
-                        {/* Avatar selection button */}
-                        <button type="button" onClick={() => setShowAvatarModal(true)}>
-                            Select Avatar
-                        </button>
-                        {selectedAvatar && (
-                            <p>
-                                Selected Avatar:{" "}
-                                <img
-                                    src={require(`../images/${selectedAvatar}`)}
-                                    alt="Selected Avatar"
-                                    width="50px"
-                                    height="50px"
-                                />
-                            </p>
-                        )}
-                    </div>
-
-                    {showAvatarModal && (
-                        <div className="avatar-modal">
-                            <h2>Select your Avatar</h2>
-                            <div className="avatar-options">
-                                {avatarImages.map((avatar, index) => (
-                                    <img
-                                        key={index}
-                                        src={require(`../images/${avatar}`)}
-                                        alt={`avatar-${index}`}
-                                        onClick={() => setSelectedAvatar(avatar)}
-                                        className={selectedAvatar === avatar ? "selected" : ""}
-                                        width="100px"
-                                        height="100px"
-                                    />
-                                ))}
+                            {/* Avatar selection */}
+                            <div className="avatar-selection">
+                                <p>Choose an Avatar:</p>
+                                <button type="button" onClick={openAvatarModal}>
+                                    {selectedAvatar ? (
+                                        <img
+                                            src={selectedAvatar}
+                                            alt="Selected Avatar"
+                                            className="selected-avatar"
+                                            width="50"
+                                            height="50"
+                                        />
+                                    ) : (
+                                        "Select Avatar"
+                                    )}
+                                </button>
                             </div>
-                            <button onClick={handleAvatarSelection}>Choose</button>
+
+                            {/* Avatar Modal */}
+                            {showAvatarModal && (
+                                <div className="avatar-modal">
+                                    <div className="avatar-modal-content">
+                                        <h3>Select an Avatar</h3>
+                                        <div className="avatar-grid">
+                                            {avatarImages.map((avatar, index) => (
+                                                <img
+                                                    key={index}
+                                                    src={avatar}
+                                                    alt={`Avatar ${index + 1}`}
+                                                    className="avatar-option"
+                                                    width="50"
+                                                    height="50"
+                                                    onClick={() => handleAvatarSelection(avatar)}
+                                                />
+                                            ))}
+                                        </div>
+                                        <button onClick={closeAvatarModal}>Close</button>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     )}
 
