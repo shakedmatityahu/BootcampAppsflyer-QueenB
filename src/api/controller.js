@@ -33,6 +33,7 @@ const signup = async (req, res) => {
     last_name,
     phone_number,
     linkedin,
+    about_me,
     programming_language,
     photo,
   } = req.body;
@@ -86,6 +87,7 @@ const signup = async (req, res) => {
           last_name,
           phone_number,
           linkedin,
+          about_me,
           photo,
         ]);
         programming_language.every((lang) =>
@@ -160,6 +162,7 @@ const updateMentor = async (req, res) => {
     last_name,
     phone_number,
     linkedin,
+    about_me,
     programming_language,
     photo,
   } = req.body;
@@ -175,6 +178,7 @@ const updateMentor = async (req, res) => {
         last_name,
         phone_number,
         linkedin,
+        about_me,
         photo,
         email,
       ]);
