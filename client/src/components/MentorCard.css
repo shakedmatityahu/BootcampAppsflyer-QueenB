@@ -65,7 +65,122 @@
   transform: scale(1.05);
 }
 
+.mentor-card-language-tag {
+  background-color: #4f4f4f;
+  border-radius: 50px;
+  color: #e6e6e6;
+  font-family: Mona Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 11.5px;
+  font-weight: 500;
+  line-height: 28px;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  margin-right: 3px;
+}
+
+.modal-header {
+  font-size: 10px;
+  margin-right: 10px;
+}
+
+.modal-about {
+  font-size: 14px;
+  padding-right: 10px;
+  text-align: justify;
+}
+
+.modal-languages {
+  overflow-wrap: anywhere;
+}
+
+.modal-body {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  flex-wrap: nowrap;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.modal-body-right {
+  max-width: 60%;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-body-left {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+  margin-top: -8px;
+}
+
+img.card-image {
+  padding: 10px 0px;
+}
+
 .modal-footer {
   justify-content: center;
   padding: 0px;
+  text-align: center;
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Style for the search input field */
+.messages-bar {
+  background-color: #bebebe69;
+  border: 1px solid #bebebe00;
+  border-radius: 20px;
+  outline: none;
+  padding: 5px 10px;
+  transition: all 0.3s ease;
+  width: 200px;
+  margin-top: 10px;
+}
+
+.messages-bar:hover {
+  border: 3px solid #fac7e2;
+  background-color: #f8f8f8;
+  width: 200px;
+}
+
+.message {
+  max-width: 50vw;
+  min-width: 20vw;
+  display: flex;
+  flex-direction: column;
+}
+
+textarea.messages-bar {
+  font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* Focus effect for search input */
+.messages-bar:focus {
+  border: 3px solid #f5a9d2;
+  background-color: #ffffff;
+}
+
+.modal-msgs {
+  display: flex;
+  align-items: center;
+
+}
+
+.msgs-btn {
+  position: relative;
+  color: #aaaaaa9c;
+  pointer-events: none;
+}
+
+button {
+  background-color: transparent;
+  border: none;
 }

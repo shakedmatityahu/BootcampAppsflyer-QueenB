@@ -36,10 +36,10 @@ const Message = () => {
           },
         }
       )
-      
+
       const data = await response.json();
       if (response.ok) {
-        const updateMessages = messages.filter((message)=>message.message_id !== id);
+        const updateMessages = messages.filter((message) => message.message_id !== id);
         setMessages(updateMessages);
       }
       else {
@@ -55,8 +55,9 @@ const Message = () => {
       <div>
         {messages.map((message) => (
           <div className="message">
-            <button onClick={() => handleDeleteMessage(message.message_id)}>
-              <div className="message-delete">
+            <div className="messages-top">
+            <div className="message-delete">
+              <button onClick={() => handleDeleteMessage(message.message_id)}>
                 <svg
                   width="18px"
                   height="18px"
@@ -71,9 +72,9 @@ const Message = () => {
                     fill="#080341"
                   />
                 </svg>
-              </div>
-            </button>
-            <h6> {message.sender} <a
+              </button>
+            </div>
+            <div className="messages-desc"> {message.sender} <a
               className="link-opacity-10-hover"
               href={`mailto:${message.sender}`}
               target="_blank"
@@ -115,13 +116,13 @@ const Message = () => {
                   stroke-linejoin="round"
                 />
               </svg>{" "}
-            </a></h6>
-            <p>{message.message}</p>
+            </a></div></div>
+            <div className="messages-bottom">{message.message}</div>
           </div>
 
         ))}
       </div>
-    </section>
+    </section >
   );
 };
 

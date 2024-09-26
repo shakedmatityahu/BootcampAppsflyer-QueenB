@@ -295,3 +295,12 @@ button.avatar-selection:hover {
   flex-direction: row-reverse;
   height: 0px;
 }
+
+.messages-desc {
+  font-weight: bold;
+  font-family: monospace;
+}
+
+.messages-bottom {
+  word-wrap: break-word;
+}

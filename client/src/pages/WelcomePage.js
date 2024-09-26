@@ -1,10 +1,13 @@
-// display the welcom page to the web
-import React from "react";
+import React, { useContext } from 'react';
 import Carousel from "../components/Carousel";
 import { Link } from "react-router-dom";
 import "./WelcomePage.css";
+import { AuthContext } from '../context/AuthContext';
+
 
 const WelcomePage = () => {
+    const { user: currentUser } = useContext(AuthContext);
+
     return (
         <>
             <div className="welcome-container">
@@ -18,9 +21,19 @@ const WelcomePage = () => {
                         Join a community of like-minded women in tech, find mentors, and
                         grow your skills together.
                     </p>
-                    <Link to="/signup" className="welcome-button">
-                        Get Started
-                    </Link>
+                    {currentUser ? (
+                        <>
+                            <Link to="/MentorsBrowse" className="welcome-button">
+                                Get Started
+                            </Link>
+                        </>
+                    ) : (
+                        <>
+                            <Link to="/signup" className="welcome-button">
+                                Get Started
+                            </Link>
+                        </>
+                    )}
                 </header>
             </div>
             <Carousel />
