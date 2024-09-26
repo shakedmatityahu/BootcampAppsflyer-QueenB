@@ -26,29 +26,53 @@ const Message = () => {
     if (user) fetchMessages();
   }, [user]);
 
-
+  const handleDeleteMessage = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5001/api/deleteMessage/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      
+      const data = await response.json();
+      if (response.ok) {
+        const updateMessages = messages.filter((message)=>message.message_id !== id);
+        setMessages(updateMessages);
+      }
+      else {
+        console.log(data.error);
+      }
+    } catch (error) {
+      console.error("Error fetching messages:", error);
+    }
+  };
 
   return (
     <section>
       <div>
         {messages.map((message) => (
           <div className="message">
-            <div className="message-delete">
-              <svg
-                width="18px"
-                height="18px"
-                viewBox="0 0 24 24"
-                fill="ea4c89"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M10.9393 12L6.9696 15.9697L8.03026 17.0304L12 13.0607L15.9697 17.0304L17.0304 15.9697L13.0607 12L17.0303 8.03039L15.9696 6.96973L12 10.9393L8.03038 6.96973L6.96972 8.03039L10.9393 12Z"
-                  fill="#080341"
-                />
-              </svg>
-            </div>
+            <button onClick={() => handleDeleteMessage(message.message_id)}>
+              <div className="message-delete">
+                <svg
+                  width="18px"
+                  height="18px"
+                  viewBox="0 0 24 24"
+                  fill="ea4c89"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M10.9393 12L6.9696 15.9697L8.03026 17.0304L12 13.0607L15.9697 17.0304L17.0304 15.9697L13.0607 12L17.0303 8.03039L15.9696 6.96973L12 10.9393L8.03038 6.96973L6.96972 8.03039L10.9393 12Z"
+                    fill="#080341"
+                  />
+                </svg>
+              </div>
+            </button>
             <h6> {message.sender} <a
               className="link-opacity-10-hover"
               href={`mailto:${message.sender}`}
