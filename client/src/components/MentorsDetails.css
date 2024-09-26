@@ -1,20 +1,66 @@
 .mentors-container {
-    padding: 20px; 
-    justify-items: center;
-    align-content: center;
-  }
-  
-  .mentors-title {
-    text-align: center; 
-    margin-bottom: 20px; 
-  }
-  
-  .card-container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 25px;
-    max-width: 96vw;
-    align-content: center;
-    justify-items: center;
-  }
-  
+  padding: 20px;
+  justify-items: center;
+  align-content: center;
+}
+
+.mentors-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.card-container {
+  display: flex;
+  /* grid-template-columns: repeat(5, 1fr); */
+  grid-gap: 25px;
+  max-width: 96vw;
+  align-content: center;
+  justify-items: center;
+}
+
+/* Container for search bar and icon */
+.navbar-search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style for the search input field */
+.search-bar {
+  padding: 7px 16px 8px 30px; /* Extra left padding to make room for the icon */
+  margin-right: 20px;
+  border: 1px solid #fff;
+  border-radius: 20px;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: #fff;
+  width: 200px;
+  justify-content: center;
+}
+
+.search-icon {
+  position: relative;
+  left: 23px;
+  width: 15px;
+  height: 15px;
+  color: #aaa;
+  pointer-events: none;
+}
+
+.search-bar:hover {
+  border: 3px solid #fac7e2;
+  background-color: #f8f8f8;
+  width: 200px;
+}
+
+input.search-bar {
+  font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+}
+
+/* Focus effect for search input */
+.search-bar:focus {
+  border: 3px solid #feaad756;
+  background-color: #ffffff;
+}
