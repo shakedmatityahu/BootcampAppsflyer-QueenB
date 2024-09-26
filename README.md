@@ -1,6 +1,9 @@
 # Queen-B-Bootcamp-Example
 An example app for the queenB Initiative - Boilerplate
 
+## Our System:
+https://github.com/user-attachments/assets/8fa556d7-ccf1-4c1f-9ee0-08eebde9424b
+
 ### In order to create a project from this example, please follow the instructions below.
 
 
