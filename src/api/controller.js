@@ -262,12 +262,16 @@ const sendMessage = async (req, res) => {
   const recipient = req.params.email;
 
   try {
-    const result = await pool.query(queries.sendMessage, [sender, recipient, message]);
+    const result = await pool.query(queries.sendMessage, [
+      sender,
+      recipient,
+      message,
+    ]);
     res.status(200).json(result.rows);
   } catch (error) {
     throw error;
   }
-}
+};
 
 const deleteMessage = async (req, res) => {
   const id = req.params.id;
@@ -278,7 +282,18 @@ const deleteMessage = async (req, res) => {
   } catch (error) {
     throw error;
   }
-} 
+};
+
+const getNumberMessages = async (req, res) => {
+  const recipient = req.params.email;
+
+  try {
+    const result = await pool.query(queries.getNumberMessages, [recipient]);
+    res.status(200).json(result.rows);
+  } catch (error) {
+    throw error;
+  }
+};
 
 module.exports = {
   getMentors,
@@ -293,4 +308,5 @@ module.exports = {
   getMessages,
   sendMessage,
   deleteMessage,
+  getNumberMessages,
 };

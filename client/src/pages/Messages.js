@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useAuthContext } from '../hooks/useAuthContext';
 import "./Auth.css";
+import { useMessageContext } from "../hooks/useMessageContext";
 
 const Message = () => {
   const [messages, setMessages] = useState([]);
+  const { dispatch } = useMessageContext();
   const { user } = useAuthContext();
-
 
   useEffect(() => {
     const fetchMessages = async () => {
       try {
         const response = await fetch(`http://localhost:5001/api/getMessages/${user.email}`);
         const data = await response.json();
+        console.log("data", data);
         if (response.ok) {
           setMessages(data);
+          dispatch({ type: "SET", payload: data.length });
         }
         else {
           console.log(data.error);
@@ -41,6 +44,7 @@ const Message = () => {
       if (response.ok) {
         const updateMessages = messages.filter((message)=>message.message_id !== id);
         setMessages(updateMessages);
+        dispatch({ type: "MINUSONE" });
       }
       else {
         console.log(data.error);
