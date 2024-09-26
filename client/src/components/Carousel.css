@@ -1,15 +1,13 @@
 .carousel-container {
   width: 100%; /* Adjust as needed */
-  margin: 0 auto; /* Center the carousel */
+  margin: 0 auto; 
   max-width: 100vw;
-  margin-top: 60px; /* Space between header and carousel */
+  margin-top: 30px;
+  margin-bottom: 10px;
 }
 
 .carousel-item img {
-  padding: 16px 20px;
-  height: 340px; /* Make images responsive */
-  border-radius: 10px; /* Optional: Add some styling */
-  margin-right: 20px
+  height: 270px; 
 }
 
 /* Hide arrows (if needed) */
