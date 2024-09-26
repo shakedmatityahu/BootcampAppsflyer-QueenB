@@ -38,4 +38,7 @@ router.get("/getMessages/:email", controller.getMessages)
 // send message route
 router.post("/sendMessage/:email", controller.sendMessage)
 
+// send message route
+router.delete("/deleteMessage/:id", controller.deleteMessage)
+
 module.exports = router;
