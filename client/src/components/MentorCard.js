@@ -36,7 +36,7 @@ const MentorCard = ({ mentor }) => {
           type="button"
           className="mentor-card-button btn"
           data-bs-toggle="modal"
-          data-bs-target={`#mentorModal${mentor.id}`}
+          data-bs-target={`#mentorModal${mentor.email}`}
         >
           <img src={image_src} alt="" className="card-image" />
           <div className="card-title">
@@ -57,9 +57,9 @@ const MentorCard = ({ mentor }) => {
       {/* Bootstrap Modal */}
       <div
         className="modal fade"
-        id={`mentorModal${mentor.id}`}
+        id={`mentorModal${mentor.email}`}
         tabIndex="-1"
-        aria-labelledby={`mentorModalLabel${mentor.id}`}
+        aria-labelledby={`mentorModalLabel${mentor.email}`}
         aria-hidden="true"
       >
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -145,6 +145,7 @@ const MentorCard = ({ mentor }) => {
                 <svg
                   width="22px"
                   height="25px"
+                  viewBox="0 0 25 25"
                   viewBox="0 0 25 25"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
