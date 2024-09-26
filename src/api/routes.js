@@ -41,4 +41,7 @@ router.post("/sendMessage/:email", controller.sendMessage)
 // send message route
 router.delete("/deleteMessage/:id", controller.deleteMessage)
 
+// get number of messages route
+router.get("/getNumberMessages/:email", controller.getNumberMessages)
+
 module.exports = router;

@@ -88,6 +88,8 @@ const sendMessage = `INSERT INTO messages (sender, recipient, message) VALUES ($
 
 const deleteMessage = "DELETE FROM messages WHERE message_id = $1"
 
+const getNumberMessages = `SELECT COUNT(*) FROM messages WHERE recipient = $1`;
+
 
 module.exports = {
   getAllUsers,
@@ -105,4 +107,5 @@ module.exports = {
   getMessages,
   sendMessage,
   deleteMessage,
+  getNumberMessages,
 };

@@ -1,30 +1,53 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import './Navbar.css';
-import ReinaDarkImage from "../assets/ReinaBlack.png";
-import { AuthContext } from '../context/AuthContext';
-import { useLogout } from '../hooks/useLogout';
+import React, { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 
+import "./Navbar.css";
+import ReinaDarkImage from "../assets/ReinaBlack.png";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { MessageContext } from "../context/MessageContext";
+import { useLogout } from "../hooks/useLogout";
 
 const Navbar = () => {
-    const { user: currentUser } = useContext(AuthContext);
-    const { logout } = useLogout();
-    const handleLogoutBtn = () => logout();
+  const { user: currentUser } = useAuthContext();
+  const { logout } = useLogout();
+  const handleLogoutBtn = () => logout();
+  const { number, dispatch } = useContext(MessageContext);
 
-    console.log("current: " + currentUser)
+  console.log("current: ", currentUser);
+
+  useEffect(() => {
+    const fetchMessages = async () => {
+      console.log("HERE");
+
+      try {
+        const response = await fetch(
+          `http://localhost:5001/api/getNumberMessages/${currentUser.email}`
+        );
+        const data = await response.json();
+        if (response.ok) {
+            console.log("data!!", data[0].count);
+          dispatch({ type: "SET", payload: data[0].count });
+        } else {
+          console.log(data.error);
+        }
+      } catch (error) {
+        console.error("Error fetching messages:", error);
+      }
+    };
+    console.log("currentUser: ", currentUser);
+    if (currentUser) fetchMessages();
+    console.log("navbar");
+  }, [currentUser]);
 
     return (
         <nav className="navbar">
             {/* Left side - Home button */}
             <div className="navbar-left">
                 <Link to="/" className="navbar-link">Home</Link>
-                {currentUser && (
-                    <>
-                        <Link to="/MentorsBrowse" className="navbar-link">Browse</Link>
-                        {currentUser && currentUser.userType === "mentor" && (<Link to="/Messages" className="navbar-link">Messages</Link>)}
-                    </>
-                )}
-            </div >
+                <Link to="/MentorsBrowse" className="navbar-link">Browse</Link>
+                {currentUser && currentUser.userType === "mentor" && (<Link to="/Messages" className="navbar-link">Messages {number}</Link>)}
+
+            </div>
 
             {/* Center logo (clickable to go to the welcome page) */}
             < div className="navbar-logo" >
