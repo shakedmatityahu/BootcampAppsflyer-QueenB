@@ -119,6 +119,10 @@
   margin-top: -8px;
 }
 
+img.card-image {
+  padding: 10px 0px;
+}
+
 .modal-footer {
   justify-content: center;
   padding: 0px;
@@ -145,15 +149,29 @@
   width: 200px;
 }
 
-input.messages-bar {
+.message {
+  max-width: 50vw;
+  min-width: 20vw;
+  display: flex;
+  flex-direction: column;
+}
+
+textarea.messages-bar {
   font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
+  text-align: center;
 }
 
 /* Focus effect for search input */
 .messages-bar:focus {
   border: 3px solid #f5a9d2;
   background-color: #ffffff;
+}
+
+.modal-msgs {
+  display: flex;
+  align-items: center;
+
 }
 
 .msgs-btn {

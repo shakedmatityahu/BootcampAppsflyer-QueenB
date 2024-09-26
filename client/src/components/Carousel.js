@@ -11,7 +11,7 @@ const importAll = (r) => {
     return images;
 };
 
-const images = importAll(require.context('../images', false, /\.(png|jpe?g|svg)$/));
+const images = importAll(require.context('../assets/carousel-images', false, /\.(png|jpe?g|svg)$/));
 
 const Carousel = () => {
     const settings = {
